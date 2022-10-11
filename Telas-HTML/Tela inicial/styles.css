@@ -85,6 +85,11 @@ main .products .container {
     gap: 15px;
 }
 
+main .products .container a{
+    text-decoration: none;
+    color: black;
+}
+
 main .products .container .card {
     font-family: 'Noto sans', sans-serif;
     background-color: #fff;
