@@ -102,6 +102,13 @@ main .container .login-card form input[type=text], input[type=password]{
     height: 40px;
     width: 300px;
     padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+
+}
+
+main .container .login-card form input[type=text], input[type=password]:focus{
+    outline: none;
 }
 
 main .container .login-card form input[type=submit]{
@@ -167,5 +174,30 @@ main .container .login-card form input[type=submit]{
 
     header .menu-toggle img {
         width: 30px;
+    }
+}
+
+@media (max-width: 412px){
+    header{
+        margin-bottom: 0;
+    }
+    main{
+        height: 784px;
+    }
+    main .container {
+        height: 100%;
+        width: 100vw;
+    }
+    main .container .login-card{
+        border: none;
+        border-radius: 0;
+        justify-content: space-evenly;
+        
+    }
+    main .container .login-card form input[type=text], input[type=password]{
+        height: 50px;
+    }
+    main .container .login-card form input[type=submit]{
+        height: 50px;
     }
 }
