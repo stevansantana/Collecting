@@ -88,6 +88,13 @@ main .container .login-card{
     border-radius: 10px;
 }
 
+main .container .login-card a{
+    text-decoration: none;
+    color: rgb(29, 49, 223);
+    font-weight: bold;
+}
+
+
 main .container .login-card form{
     display: flex;
     flex-direction: column;
