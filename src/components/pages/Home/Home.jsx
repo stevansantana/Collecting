@@ -1,5 +1,5 @@
 import CardProduto from "../CardProduto/CardProduto";
-
+import styles from "./Hogitme.module.css"
 
 export default function Home() {
     /* Itens cadastrados */
@@ -18,7 +18,7 @@ export default function Home() {
 
 
     return (
-        <main>
+        <main className={styles.products_container}>
             {/* Verifica se tem algum produto cadastrado e renderiza os produtos */}
             {produtos.length > 0 &&
                 produtos.map((produto) =>

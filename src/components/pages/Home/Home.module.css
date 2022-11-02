@@ -1,0 +1,17 @@
+
+
+
+.products_container{
+    display: flex;
+    width: 80vw;
+    justify-content: center;
+    gap: 40px;
+    margin: 0px auto;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 360px) {
+    .products_container{
+        display: grid;
+    }
+}
