@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
 .footer_container{
-    position: fixed;
-    bottom: 0%;
     width: 100%;
     background: rgb(0, 0, 0);
     color: white;
     padding: 20px;
     font-family: 'Noto Sans', sans-serif;
     text-align: center;
+    margin-top: auto;
 }
 
 .footer_container a{
