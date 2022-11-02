@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
-footer{
+.footer_container{
     position: fixed;
     bottom: 0%;
     width: 100%;
@@ -11,7 +11,7 @@ footer{
     text-align: center;
 }
 
-footer a{
+.footer_container a{
     text-decoration: none;
     color: yellow;
 }

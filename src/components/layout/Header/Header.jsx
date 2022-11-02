@@ -1,5 +1,5 @@
 import styles from './Header.module.css'
-import lupa from '../../../assets/magnifying-glass-solid.svg'
+// import lupa from '../../../assets/magnifying-glass-solid.svg'
 import NavBar from '../NavBar/NavBar'
 
 export default function Header() {
