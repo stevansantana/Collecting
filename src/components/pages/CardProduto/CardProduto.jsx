@@ -1,8 +1,8 @@
-
+import styles from './CardProduto.module.css'
 
 export default function CardProduto({ linkImg, nome, valor }) {
     return (
-        <div>
+        <div className={styles.card_container}>
             <img
                 src={linkImg}
                 alt="Imagem do produto"
