@@ -1,5 +1,5 @@
 import CardProduto from "../CardProduto/CardProduto";
-import styles from "./Hogitme.module.css"
+import styles from "./Home.module.css"
 
 export default function Home() {
     /* Itens cadastrados */
