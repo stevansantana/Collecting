@@ -1,20 +1,30 @@
+import { useState } from "react";
 import CardProduto from "../CardProduto/CardProduto";
 import styles from "./Home.module.css"
 
-export default function Home() {
+export default function Home({ test }) {
     /* Itens cadastrados */
     const produtos = [
         {
+            id: 1,
             linkImg: "https://via.placeholder.com/200",
-            nome: "Produto 1",
-            valor: "300"
+            nome: "Produto ",
+            valor: "00"
         },
         {
+            id: 2,
             linkImg: "https://via.placeholder.com/200",
-            nome: "Produto 2",
-            valor: "00"
+            nome: "Produto ",
+            valor: "100"
         }
     ]
+
+    const [data, setData] = useState({})
+
+    function callBack(linkImg, nome, valor, id) {
+        setData(data.linkImg = linkImg, data.nome = nome, data.valor = valor, data.id = id)
+        test(data)
+    }
 
 
     return (
@@ -26,6 +36,9 @@ export default function Home() {
                         linkImg={produto.linkImg}
                         nome={produto.nome}
                         valor={produto.valor}
+                        key={produto.id}
+                        id={produto.id}
+                        handleClick={callBack}
                     />
                 )
             }

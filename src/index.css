@@ -9,4 +9,5 @@ html, body, #root{
   background-color: #f9f6f6;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
