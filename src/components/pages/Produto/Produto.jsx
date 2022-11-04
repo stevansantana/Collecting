@@ -1,17 +1,19 @@
-
+import styles from './Produto.module.css'
 
 export default function Produto({data}) {
 
     const productData = data
-
+    productData.linkImg = "https://via.placeholder.com/350"
 
 
     return (
-        <div>
+        <main className={styles.product_container}>
             <img src={productData.linkImg} alt="" />
-            <h1>{`${productData.nome} ${productData.id}`}</h1>
-            <h1>R${productData.valor}</h1>
-            <button>Comprar</button>
-        </div>
+            <div>
+                <h1>{`${productData.nome} ${productData.id}`}</h1>
+                <h1>R${productData.valor}</h1>
+                <button>Comprar</button>
+            </div>
+        </main>
     )
 }
