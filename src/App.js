@@ -4,12 +4,13 @@ import Footer from './components/layout/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import Produto from './components/pages/Produto/Produto';
 import { useState } from 'react';
+import NovoProduto from './components/pages/NovoProduto/NovoProduto';
 
 function App() {
 
   const [data, setData] = useState({})
 
-  function teste(DATA) {
+  function recebeDados(DATA) {
     setData(DATA)
   }
 
@@ -18,11 +19,9 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        <Route exact path='/' element={<Home test={teste} />} />
-        <Route
-          path='/product/:id'
-          element={<Produto
-            data={data} />} />
+        <Route exact path='/' element={<Home sobeDados={recebeDados} />} />
+        <Route path='/product/:id' element={<Produto data={data} />} />
+        <Route path='/new-product' element={<NovoProduto />} />
       </Routes>
       <Footer />
     </Router>

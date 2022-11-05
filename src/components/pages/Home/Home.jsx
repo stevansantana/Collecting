@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import CardProduto from "../CardProduto/CardProduto";
 import styles from "./Home.module.css"
 
-export default function Home({ test }) {
+
+
+export default function Home({ sobeDados }) {
     /* Itens cadastrados */
     const produtos = [
         {
@@ -21,14 +24,15 @@ export default function Home({ test }) {
 
     const [data, setData] = useState({})
 
-    function callBack(linkImg, nome, valor, id) {
+    function recebeDados(linkImg, nome, valor, id) {
         setData(data.linkImg = linkImg, data.nome = nome, data.valor = valor, data.id = id)
-        test(data)
+        sobeDados(data)
     }
 
 
     return (
         <main className={styles.products_container}>
+            <Link to={'/new-product'}><button>Adiconar</button></Link>
             {/* Verifica se tem algum produto cadastrado e renderiza os produtos */}
             {produtos.length > 0 &&
                 produtos.map((produto) =>
@@ -38,7 +42,7 @@ export default function Home({ test }) {
                         valor={produto.valor}
                         key={produto.id}
                         id={produto.id}
-                        handleClick={callBack}
+                        handleClick={recebeDados}
                     />
                 )
             }

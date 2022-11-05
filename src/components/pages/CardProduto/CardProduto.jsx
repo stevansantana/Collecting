@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 
 export default function CardProduto({ linkImg, nome, valor, id , handleClick}) {
 
-    function callBack(){
+    function subirDados(){
         handleClick(linkImg,nome, valor, id)
     }
 
     return (
-        <div className={styles.card_container} onClick={callBack}>
+        <div className={styles.card_container} onClick={subirDados}>
             <Link
                 to={`/product/${id}`}
                 style={{ textDecoration: 'none', color: 'black' }}>
