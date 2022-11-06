@@ -1,10 +1,11 @@
 import styles from './CardProduto.module.css'
 import { Link } from 'react-router-dom'
+import Button from '../../layout/Button/Button'
 
-export default function CardProduto({ linkImg, nome, valor, id , handleClick}) {
+export default function CardProduto({ linkImg, nome, valor, id, handleClick }) {
 
-    function subirDados(){
-        handleClick(linkImg,nome, valor, id)
+    function subirDados() {
+        handleClick(linkImg, nome, valor, id)
     }
 
     return (
@@ -19,7 +20,7 @@ export default function CardProduto({ linkImg, nome, valor, id , handleClick}) {
                 <h3>{nome}</h3>
                 <h3>R${valor}</h3>
             </Link>
-            <button>Comprar</button>
+            <Button conteudoBtn='Comprar' />
         </div>
     )
 }

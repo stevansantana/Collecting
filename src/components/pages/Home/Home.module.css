@@ -1,22 +1,29 @@
-
-
-
-.products_container{
+.products_container {
     display: flex;
     width: 80vw;
     justify-content: center;
+    flex-direction: row-reverse;
     gap: 40px;
     margin: 0px auto;
     margin-bottom: 20px;
 }
 
-.products_container button{
-    height: fit-content;
-    align-self: center;
+
+
+.products_container main > div{
+    display: flex;
+    
+}
+
+
+.products_container div button{
+    padding: 10px;
+    position: sticky;
+    top: 0;
 }
 
 @media (max-width: 360px) {
-    .products_container{
+    .products_container {
         display: grid;
     }
 }

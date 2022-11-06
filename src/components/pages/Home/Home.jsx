@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import CardProduto from "../CardProduto/CardProduto";
 import styles from "./Home.module.css"
+import Button from "../../layout/Button/Button"
+
 
 
 
@@ -31,26 +33,32 @@ export default function Home({ sobeDados }) {
 
 
     return (
-        <main className={styles.products_container}>
-            <Link to={'/new-product'}><button>Adiconar</button></Link>
-            {/* Verifica se tem algum produto cadastrado e renderiza os produtos */}
-            {produtos.length > 0 &&
-                produtos.map((produto) =>
-                    <CardProduto
-                        linkImg={produto.linkImg}
-                        nome={produto.nome}
-                        valor={produto.valor}
-                        key={produto.id}
-                        id={produto.id}
-                        handleClick={recebeDados}
-                    />
-                )
-            }
-            {/* Renderiza isso, caso não haja items cadastrados */}
-            {produtos.length === 0 &&
-                <h1>Não há produtos cadastrados :(</h1>
-            }
+        <div className={styles.page_container}>
+            <main className={styles.products_container}>
+                <div>
+                    <Link to={'/new-product'}>
+                        <Button conteudoBtn='Adicionar' />
+                    </Link>
+                </div>
+                {/* Verifica se tem algum produto cadastrado e renderiza os produtos */}
+                {produtos.length > 0 &&
+                    produtos.map((produto) =>
+                        <CardProduto
+                            linkImg={produto.linkImg}
+                            nome={produto.nome}
+                            valor={produto.valor}
+                            key={produto.id}
+                            id={produto.id}
+                            handleClick={recebeDados}
+                        />
+                    )
+                }
+                {/* Renderiza isso, caso não haja items cadastrados */}
+                {produtos.length === 0 &&
+                    <h1>Não há produtos cadastrados :(</h1>
+                }
 
-        </main>
+            </main>
+        </div>
     )
 }
