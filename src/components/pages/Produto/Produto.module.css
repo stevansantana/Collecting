@@ -12,10 +12,18 @@
     padding: 20px;
 }
 
-.product_container div{
+.product_container > div{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 50px;
+}
+
+.product_container > div  h1{
+    margin-bottom: 20px;
+}
+
+.product_container > div > div{
+    width: 200px;
 }
 
 .product_container img{
