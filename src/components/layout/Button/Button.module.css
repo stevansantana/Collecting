@@ -18,3 +18,9 @@
     box-shadow: none;
     background-color: hsl(210, 100%, 46%);
 }
+
+@media (max-width:360px) {
+    .button_area{
+        margin-top: 0;
+    }
+}
