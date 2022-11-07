@@ -1,3 +1,4 @@
+import Input from '../../form/Input/Input'
 import Button from '../../layout/Button/Button'
 import styles from './EditPage.module.css'
 
@@ -10,10 +11,8 @@ export default function EditPage({ data }) {
             </div>
             <div>
 
-                <label htmlFor="novoNome">Novo nome</label><br />
-                <input type="text" placeholder={data.nome} id="novoNome" /><br />
-                <label htmlFor="novoValor">Novo valor</label><br />
-                <input type="text" placeholder={`R$${data.valor}`} /><br />
+                <Input tipo='text' nome='novoNome' texto='Novo nome' placeholder={data.nome} />
+                <Input tipo='number' nome='novoValor' texto='Novo valor' placeholder={`R$${data.valor}`} />
                 <Button conteudoBtn='Finalizar' />
 
             </div>

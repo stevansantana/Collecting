@@ -1,5 +1,7 @@
 import styles from './NovoProduto.module.css'
 import Button from '../../layout/Button/Button'
+import Input from '../../form/Input/Input'
+
 
 export default function NovoProduto() {
 
@@ -11,10 +13,8 @@ export default function NovoProduto() {
                     <input type="file" />
                 </div>
                 <div className={styles.form_input_container}>
-                    <label htmlFor="product-name">Nome do produto</label>
-                    <input type="text" id="product-name" />
-                    <label htmlFor="product-cost">Valor do produto</label>
-                    <input type="number" /><br />
+                    <Input texto='Nome do produto' nome='nomeProduto' tipo='text' />
+                    <Input texto="Valor do produto" nome="custoProduto" tipo="number" />
                     <Button conteudoBtn='Postar produto' />
                 </div>
 

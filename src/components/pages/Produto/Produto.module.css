@@ -29,6 +29,32 @@
 .product_container img{
     border-radius: 10px;
 }
+.product_container div div .button_container button{
+    background-color: #1e90ff;
+    width: 100%;
+    padding: 10px 0px;
+    border-style: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition-duration: .2s;
+}
+
+.product_container div div .button_container button:hover{
+    box-shadow: 0px 0px 30px hsl(210, 100%, 66%);
+    cursor: pointer;
+}
+
+.product_container div div .button_container button:active{
+    box-shadow: none;
+    background-color: hsl(210, 100%, 46%);
+}
+
+@media (max-width:360px) {
+    .button_area{
+        margin-top: 0;
+    }
+}
 
 @media (max-width:360px) {
     .product_container{
