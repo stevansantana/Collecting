@@ -1,12 +1,15 @@
 import styles from './Header.module.css'
 // import lupa from '../../../assets/magnifying-glass-solid.svg'
+import { Link } from 'react-router-dom'
 import NavBar from '../NavBar/NavBar'
 
 export default function Header() {
     return (
         <header className={styles.header}>
             <div>
-                <h1>Collecting</h1>
+                <Link to='/'>
+                    <h1>Collecting</h1>
+                </Link>
                 <div className={styles.search_area}>
                     <input
                         type="text"
