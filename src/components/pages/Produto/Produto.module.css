@@ -51,15 +51,13 @@
 }
 
 @media (max-width:360px) {
-    .button_area{
-        margin-top: 0;
-    }
+   
 }
 
 @media (max-width:360px) {
-    .product_container{
+    .product_container div{
         display: grid;
-        margin: 0 auto 10px auto;
+       
         gap: 30px;
     }
     
@@ -68,7 +66,14 @@
     }
 
     .product_container div{
-        gap: 20px;
+        gap: 10px;
+    }
+    .product_container div div{
+        width: 100%;
+    }
+
+    .button_container{
+        align-content: center;
     }
 }
 
