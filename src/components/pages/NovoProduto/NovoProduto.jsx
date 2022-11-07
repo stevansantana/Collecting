@@ -1,12 +1,10 @@
 import styles from './NovoProduto.module.css'
 import Button from '../../layout/Button/Button'
-import BackButton from '../../layout/BackButton/BackButton'
 
 export default function NovoProduto() {
 
     return (
         <main className={styles.form_container}>
-            <BackButton />
             <form action="">
                 <div>
                     <img src="https://via.placeholder.com/500" alt="Sua imagem" /><br />

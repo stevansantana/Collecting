@@ -9,56 +9,65 @@ import Button from "../../layout/Button/Button"
 
 export default function Home({ sobeDados }) {
     /* Itens cadastrados */
-    const produtos = [
+    const [produtos, setProdutos] = useState([
         {
             id: 1,
             linkImg: "https://via.placeholder.com/200",
-            nome: "Produto ",
+            nome: "Produto 1",
             valor: "00"
         },
         {
             id: 2,
             linkImg: "https://via.placeholder.com/200",
-            nome: "Produto ",
+            nome: "Produto 2",
             valor: "100"
         }
-    ]
+    ])
 
-    const [data, setData] = useState({})
+    var [data, setData] = useState([])
 
-    function recebeDados(linkImg, nome, valor, id) {
-        setData(data.linkImg = linkImg, data.nome = nome, data.valor = valor, data.id = id)
+    function recebeDados(nome, valor, id) {
+        let data = {
+            linkImg: "https://via.placeholder.com/200",
+            id: id,
+            nome: nome,
+            valor: valor
+        }
+        setData(data)
         sobeDados(data)
+    }
+
+    function removerProduto(id){ 
+        setProdutos(produtos.filter((produto) => produto.id !== id))
     }
 
 
     return (
-        <div className={styles.page_container}>
-            <main className={styles.products_container}>
-                <div>
-                    <Link to={'/new-product'}>
-                        <Button conteudoBtn='Adicionar' />
-                    </Link>
-                </div>
-                {/* Verifica se tem algum produto cadastrado e renderiza os produtos */}
-                {produtos.length > 0 &&
-                    produtos.map((produto) =>
-                        <CardProduto
-                            linkImg={produto.linkImg}
-                            nome={produto.nome}
-                            valor={produto.valor}
-                            key={produto.id}
-                            id={produto.id}
-                            handleClick={recebeDados}
-                        />
-                    )
-                }
-                {/* Renderiza isso, caso não haja items cadastrados */}
-                {produtos.length === 0 &&
-                    <h1>Não há produtos cadastrados :(</h1>
-                }
+        <main className={styles.products_container}>
+            {/* Verifica se tem algum produto cadastrado e renderiza os produtos */}
+            {produtos.length > 0 &&
+                produtos.map((produto) =>
+                    <CardProduto
+                        linkImg={produto.linkImg}
+                        nome={produto.nome}
+                        valor={produto.valor}
+                        key={produto.id}
+                        id={produto.id}
+                        handleClick={recebeDados}
+                        handleRemove={removerProduto}
+                    />
+                )
+            }
+            {/* Renderiza isso, caso não haja items cadastrados */}
+            {produtos.length === 0 &&
+                <h1>Não há produtos cadastrados :(</h1>
+            }
 
-            </main>
-        </div>
+            <div>
+                <Link to={'/new-product'}>
+                    <Button conteudoBtn='Adicionar produto' />
+                </Link>
+            </div>
+        </main>
     )
 }

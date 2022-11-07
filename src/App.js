@@ -8,7 +8,7 @@ import NovoProduto from './components/pages/NovoProduto/NovoProduto';
 
 function App() {
 
-  const [data, setData] = useState({})
+  let [data, setData] = useState({})
 
   function recebeDados(DATA) {
     setData(DATA)
