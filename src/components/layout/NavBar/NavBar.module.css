@@ -9,3 +9,10 @@
 .nav_container ul li{
     list-style-type: none;
 }
+
+/* MUDAR ISSO */
+@media (max-width: 360px) {
+    .nav_container{
+        display: none;
+    }
+}

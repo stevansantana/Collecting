@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+.products_container {
+    display: flex;
+    width: 80vw;
+    justify-content: center;
+    flex-direction: row;
+    gap: 40px;
+    margin: 0px auto;
+    margin-bottom: 20px;
+    position: relative;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+
+
+.products_container main > div{
+    display: flex;
+}
+
+
+.products_container div button{
+    padding: 10px;
+}
+
+@media (max-width: 360px) {
+    .products_container {
+        display: grid;
+    }
+}
