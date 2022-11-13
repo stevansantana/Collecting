@@ -1,0 +1,10 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Tazo",
+            "price": 150,
+            "linkImg": "https://via.placeholder.com/200"
+        }
+    ]
+}
