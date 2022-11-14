@@ -1,10 +1,15 @@
 {
-    "products": [
-        {
-            "id": 1,
-            "name": "Tazo",
-            "price": 150,
-            "linkImg": "https://via.placeholder.com/200"
-        }
-    ]
+  "products": [
+    {
+      "linkImg": "https://via.placeholder.com/200",
+      "name": "Tazo",
+      "price": "234",
+      "id": 1
+    },
+    {
+      "name": "Blusa do Mengão",
+      "price": "3000",
+      "id": 2
+    }
+  ]
 }
