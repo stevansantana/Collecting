@@ -4,6 +4,7 @@ import Footer from './components/layout/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import Produto from './components/pages/Produto/Produto';
 import NovoProduto from './components/pages/NovoProduto/NovoProduto';
+import Chat from './components/pages/Chat/Chat';
 
 function App() {
 
