@@ -3,63 +3,47 @@ import { Link } from "react-router-dom";
 import CardProduto from "../CardProduto/CardProduto";
 import styles from "./Home.module.css"
 import Button from "../../layout/Button/Button"
+import { useEffect } from "react";
+import axios from "axios";
 
 
+const api = axios.create({
+    baseURL: `http://localhost:5000/products`
+})
 
 
-export default function Home({ sobeDados }) {
-    /* Itens cadastrados */
-    const [produtos, setProdutos] = useState([
-        {
-            id: 1,
-            linkImg: "https://via.placeholder.com/200",
-            nome: "Produto 1",
-            valor: "00"
-        },
-        {
-            id: 2,
-            linkImg: "https://via.placeholder.com/200",
-            nome: "Produto 2",
-            valor: "100"
-        }
-    ])
+export default function Home() {
+    /* Itens cadastrados */    
 
-    var [data, setData] = useState([])
+    const [products, setProducts] = useState([])
 
-    function recebeDados(nome, valor, id) {
-        let data = {
-            linkImg: "https://via.placeholder.com/200",
-            id: id,
-            nome: nome,
-            valor: valor
-        }
-        setData(data)
-        sobeDados(data)
+    useEffect(() => {
+        api.get('/').then(response =>{
+            setProducts(response.data)
+        })
+    }, [])
+
+    function removeProducts(id){
+        api.delete(`/${id}`)
     }
-
-    function removerProduto(id){ 
-        setProdutos(produtos.filter((produto) => produto.id !== id))
-    }
-
 
     return (
         <main className={styles.products_container}>
             {/* Verifica se tem algum produto cadastrado e renderiza os produtos */}
-            {produtos.length > 0 &&
-                produtos.map((produto) =>
+            {products.length > 0 &&
+                products.map((produto) =>
                     <CardProduto
                         linkImg={produto.linkImg}
-                        nome={produto.nome}
-                        valor={produto.valor}
+                        nome={produto.name}
+                        valor={produto.price}
                         key={produto.id}
                         id={produto.id}
-                        handleClick={recebeDados}
-                        handleRemove={removerProduto}
+                        handleRemove={removeProducts}
                     />
                 )
             }
             {/* Renderiza isso, caso não haja items cadastrados */}
-            {produtos.length === 0 &&
+            {products.length === 0 &&
                 <h1>Não há produtos cadastrados :(</h1>
             }
 
