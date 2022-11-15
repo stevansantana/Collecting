@@ -11,9 +11,6 @@ export default function NavBar(){
                     Meus pedidos
                 </li>
                 <li>
-                    Chat
-                </li>
-                <li>
                     Login
                 </li>
                 <li>
