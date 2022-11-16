@@ -7,6 +7,7 @@ import NovoProduto from './components/pages/NovoProduto/NovoProduto';
 //import Chat from './components/pages/Chat/Chat';
 import Carrinho from './components/pages/Carrinho/Carrinho'
 
+
 function App() {
 
   return (
