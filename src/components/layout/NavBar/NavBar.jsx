@@ -14,6 +14,9 @@ export default function NavBar(){
                     Login
                 </li>
                 <li>
+                    Chat
+                </li>
+                <li>
                     Cadastrar
                 </li>
             </ul>
