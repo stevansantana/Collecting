@@ -4,6 +4,10 @@ import Footer from './components/layout/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import Produto from './components/pages/Produto/Produto';
 import NovoProduto from './components/pages/NovoProduto/NovoProduto';
+import Chat from './components/pages/Chat/Chat';
+import "./style.scss";
+
+
 
 function App() {
 
@@ -14,6 +18,7 @@ function App() {
         <Route exact path='/' element={<Home />} />
         <Route path='/product/:id' element={<Produto/>} />
         <Route path='/new-product' element={<NovoProduto />} />
+        <Route path='/Chat' element={<Chat />} />
       </Routes>
       <Footer />
     </Router>
