@@ -2,14 +2,26 @@ import styles from './Produto.module.css'
 import Button from '../../layout/Button/Button'
 import { useState } from 'react'
 import EditPage from '../EditPage/EditPage'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
+
+const api = axios.create({
+    baseURL: `http://localhost:5000/products`
+})
+
+export default function Produto() {
 
 
-export default function Produto({ data }) {
-
-    let productData = data
-    productData.linkImg = "https://via.placeholder.com/350"
-
+    const [product, setProduct] = useState([])
     const [edit, setEdit] = useState(false)
+    const { id } = useParams()
+
+    useState(() => {
+        api.get(`/${id}`)
+            .then(resp => setProduct(resp.data))
+        console.log(product)
+    }, [])
+
 
     function toggleEdit() {
         setEdit(!edit)
@@ -18,22 +30,22 @@ export default function Produto({ data }) {
 
     return (
         <main className={styles.product_container}>
-                {!edit ? (
+            {!edit ? (
+                <div>
+                    <img src={product.linkImg} alt="" />
                     <div>
-                        <img src={productData.linkImg} alt="" />
-                        <div>
-                            <h1>{`${productData.nome}`}</h1>
-                            <h1>R${productData.valor}</h1>
-                            <div className={styles.button_container}>
-                                <Button conteudoBtn='Comprar' />
-                                <button onClick={toggleEdit}>Editar</button>
-                            </div>
+                        <h1>{product.name}</h1>
+                        <h1>R${product.price}</h1>
+                        <div className={styles.button_container}>
+                            <Button conteudoBtn='Comprar' />
+                            <button onClick={toggleEdit}>Editar</button>
                         </div>
                     </div>
-                ) : (
-                    <EditPage data={productData} />
-                )
-                }
+                </div>
+            ) : (
+                <EditPage data={product} />
+            )
+            }
         </main>
     )
 }

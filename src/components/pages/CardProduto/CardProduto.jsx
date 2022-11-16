@@ -4,9 +4,6 @@ import Button from '../../layout/Button/Button'
 
 export default function CardProduto({ nome, valor, id, handleClick, handleRemove }) {
 
-    function subirDados() {
-        handleClick(nome, valor, id)
-    }
 
     function remove(e){
         e.preventDefault()
@@ -14,7 +11,7 @@ export default function CardProduto({ nome, valor, id, handleClick, handleRemove
     }
   
     return (
-        <div className={styles.card_container} onClick={subirDados}>
+        <div className={styles.card_container}>
             <Link
                 to={`/product/${id}`}
                 style={{ textDecoration: 'none', color: 'black' }}>
