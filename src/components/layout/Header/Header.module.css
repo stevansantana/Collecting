@@ -24,6 +24,7 @@
 
 .header a:hover {
     color: white;
+    background-color: black;
 }
 
 .header h1 {

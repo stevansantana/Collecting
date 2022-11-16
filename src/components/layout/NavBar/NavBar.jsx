@@ -1,11 +1,14 @@
 import styles from './NavBar.module.css'
+import { Link } from "react-router-dom";
 
 export default function NavBar(){
     return(
         <nav className={styles.nav_container}>
             <ul>
                 <li>
-                    Carrinho
+                    <Link to={'/cart'}>
+                        Carrinho
+                    </Link>
                 </li>
                 <li>
                     Meus pedidos
