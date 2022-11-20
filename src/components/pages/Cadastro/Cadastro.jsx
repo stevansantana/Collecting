@@ -23,15 +23,15 @@ export default function Cadastro()
     }
 
     return(
-
-        <>
            
            <Container >
+
                <Form className='border border-dark p-5 rounded bg-dark text-white' onSubmit={handleSubmit(onSubmit, onError)}>
                 
                 <h1 className='text-primary text-center mb-3 fst-italic'>CADASTRO</h1>
 
                     <Row>
+                        
                         <Form.Group as={Col}>
                             <Form.Label className='mt-5'>Nome Completo</Form.Label>
                             <Form.Control type="text" placeholder='Digite seu nome completo' {...register("nomeCompleto", {required: "Por favor, digite seu nome completo"})}
@@ -122,9 +122,8 @@ export default function Cadastro()
 
                     </Form.Group>
                </Form>
-           </Container>
 
-        </>
+           </Container>
 
     )
 }

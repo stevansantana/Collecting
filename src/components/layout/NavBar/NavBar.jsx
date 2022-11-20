@@ -20,7 +20,7 @@ export default function NavBar() {
                     Chat
                 </li>
                 <li>
-                    <Link to={'/sign-in'}>
+                    <Link to={'/sign-up'}>
                         Cadastrar
                     </Link>
                 </li>
