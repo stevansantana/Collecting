@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Input from '../../form/Input/Input'
 import Button from '../../layout/Button/Button'
 import styles from './EditPage.module.css'
@@ -15,21 +15,26 @@ export default function EditPage() {
     const [product, setProduct] = useState([])
     const [newName, setNewName] = useState()
     const [newPrice, setNewPrice] = useState()
+    const navigate = useNavigate();
 
+    // Get produto pelo id
     useState(() => {
         api.get(`/${id}`)
             .then(resp => setProduct(resp.data))
     }, [])
 
+    // Atualiza os dados do produto
     function updateProduct() {
         api.put(`/${id}`, {
             linkImg: product.linkImg,
             name: newName || product.name,
             price: newPrice || product.price
         })
+        // Leva para página anterior
+        navigate(-1)
     }
 
-
+    
     const handleNameChange = (e) => {
         setNewName(e.target.value)
     }
