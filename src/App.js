@@ -7,7 +7,7 @@ import NovoProduto from './components/pages/NovoProduto/NovoProduto';
 import Chat from './components/pages/Chat/Chat';
 import "./style.scss";
 import Carrinho from './components/pages/Carrinho/Carrinho'
-
+import Cadastro from './components/pages/Cadastro/Cadastro'
 
 function App() {
 
@@ -16,9 +16,9 @@ function App() {
       <Header />
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route path='/product/:id' element={<Produto/>} />
+        <Route path='/product/:id' element={<Produto />} />
         <Route path='/new-product' element={<NovoProduto />} />
-
+        <Route path='/sign-up' element={<Cadastro />} />
         <Route path='/Chat' element={<Chat />} />
 
         <Route path='/cart' element={<Carrinho />} />
