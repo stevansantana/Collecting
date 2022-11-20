@@ -2,9 +2,27 @@
   "products": [
     {
       "linkImg": "https://via.placeholder.com/200",
-      "name": "Tazo",
-      "price": "234",
-      "id": 1
+      "name": "teste2",
+      "price": "533",
+      "id": 2
+    },
+    {
+      "linkImg": "https://via.placeholder.com/200",
+      "name": "teste4",
+      "price": "433",
+      "id": 4
+    },
+    {
+      "linkImg": "https://via.placeholder.com/200",
+      "name": "teste2",
+      "price": "332",
+      "id": 5
+    },
+    {
+      "linkImg": "https://via.placeholder.com/200",
+      "name": "teste5",
+      "price": "42",
+      "id": 6
     }
   ]
 }

@@ -3,6 +3,7 @@ import Button from '../../layout/Button/Button'
 import Input from '../../form/Input/Input'
 import { useState } from 'react'
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 const api = axios.create({
     baseURL: `http://localhost:5000/products`
@@ -12,6 +13,7 @@ export default function NovoProduto() {
 
     const [productName, setProductName] = useState()
     const [productPrice, setProductPrice] = useState()
+    const navigate = useNavigate();
 
     function postProduct() {
         api.post('/', {
@@ -19,6 +21,7 @@ export default function NovoProduto() {
             name: productName || 'Sem nome',
             price: productPrice || 0
         })
+        navigate('/')
     }
 
     return (
