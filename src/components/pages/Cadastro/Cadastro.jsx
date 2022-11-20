@@ -43,7 +43,7 @@ export default function Cadastro()
 
                         <Form.Group as={Col}>
                             <Form.Label className='mt-5 text-dark'>CPF</Form.Label>
-                            <Form.Control className='border border-2 border-dark' type="text" placeholder='Digite seu CPF' {...register("cpf", {required: "Por favor, digite seu CPF",
+                            <Form.Control className='border border-2 border-dark' maxLength={11} type="text" placeholder='Digite seu CPF' {...register("cpf", {required: "Por favor, digite seu CPF",
                             pattern: {
                                 value: /^[0-9]*$/,
                                 message: "Use somente números"
@@ -81,7 +81,7 @@ export default function Cadastro()
 
                         <Form.Group as={Col}>
                             <Form.Label className='mt-5 text-dark'>Celular</Form.Label>
-                            <Form.Control className='border border-2 border-dark' type="tel" placeholder='Digite seu número de celular' {...register("celular", {required: "Por favor, informe seu número de celular",
+                            <Form.Control className='border border-2 border-dark' maxLength={11} type="tel" placeholder='Digite seu número de celular' {...register("celular", {required: "Por favor, informe seu número de celular",
                             pattern: {
                                     value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-.]*(\d{4})(?: *x(\d+))?\s*$/,
                                     message: "Use somente número juntamente com o DDD"
