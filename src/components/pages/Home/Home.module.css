@@ -29,7 +29,16 @@
 
 
 @media (max-width: 360px) {
-    .products_container {
-        display: grid;
+    .products_container{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
+
+    .products_container .card_container{
+        display: grid;
+        grid-template-areas: '1';
+    
+    }
+    
 }
