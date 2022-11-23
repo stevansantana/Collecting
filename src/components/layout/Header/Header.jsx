@@ -1,9 +1,14 @@
 import styles from './Header.module.css'
-// import lupa from '../../../assets/magnifying-glass-solid.svg'
+import { seekProductState } from '../../../atoms'
 import { Link } from 'react-router-dom'
 import NavBar from '../NavBar/NavBar'
+import { useRecoilState } from 'recoil'
 
 export default function Header() {
+
+    const [seekProductName, setSeekProductName] = useRecoilState(seekProductState)
+
+
     return (
         <header className={styles.header}>
             <div>
@@ -15,14 +20,13 @@ export default function Header() {
                         type="text"
                         name="procurar"
                         className="search-field"
-                        placeholder="Procurar item" />
-                    {/* <button className="search-button">
-                        <img src={lupa} alt="lupa" />
-                    </button> */}
-
+                        placeholder="Procurar item"
+                        value={seekProductName}
+                        onChange={e => setSeekProductName(e.target.value)}
+                    />
                 </div>
             </div>
-            <NavBar/>
+            <NavBar />
         </header>
     )
 }
