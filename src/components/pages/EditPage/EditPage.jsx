@@ -4,6 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import Input from '../../form/Input/Input'
 import Button from '../../layout/Button/Button'
 import styles from './EditPage.module.css'
+import { productState } from '../../../atoms'
+import { useRecoilState } from 'recoil'
 
 const api = axios.create({
     baseURL: `http://localhost:5000/products`
@@ -12,7 +14,7 @@ const api = axios.create({
 export default function EditPage() {
 
     const { id } = useParams()
-    const [product, setProduct] = useState([])
+    const [product, setProduct] = useRecoilState(productState)
     const [newName, setNewName] = useState()
     const [newPrice, setNewPrice] = useState()
     const navigate = useNavigate();
@@ -34,7 +36,7 @@ export default function EditPage() {
         navigate(-1)
     }
 
-    
+
     const handleNameChange = (e) => {
         setNewName(e.target.value)
     }

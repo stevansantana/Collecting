@@ -4,6 +4,8 @@ import { useState } from 'react'
 import EditPage from '../EditPage/EditPage'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { useRecoilState } from 'recoil'
+import { productState } from '../../../atoms'
 
 const api = axios.create({
     baseURL: `http://localhost:5000/products`
@@ -12,15 +14,15 @@ const api = axios.create({
 export default function Produto() {
 
 
-    const [product, setProduct] = useState([])
+    const [produto, setProduto] = useRecoilState(productState)
+
     const [edit, setEdit] = useState(false)
     const { id } = useParams()
 
     useState(() => {
         api.get(`/${id}`)
-            .then(resp => setProduct(resp.data))
-        console.log(product)
-    }, [])
+            .then(resp => setProduto(resp.data))
+    })
 
 
     function toggleEdit() {
@@ -32,10 +34,10 @@ export default function Produto() {
         <main className={styles.product_container}>
             {!edit ? (
                 <div>
-                    <img src={product.linkImg} alt="" />
+                    <img src={produto.linkImg} alt="" />
                     <div>
-                        <h1>{product.name}</h1>
-                        <h1>R${product.price}</h1>
+                        <h1>{produto.name}</h1>
+                        <h1>R${produto.price}</h1>
                         <div className={styles.button_container}>
                             <Button conteudoBtn='Comprar' />
                             <button onClick={toggleEdit}>Editar</button>
@@ -43,7 +45,7 @@ export default function Produto() {
                     </div>
                 </div>
             ) : (
-                <EditPage data={product} />
+                <EditPage data={produto} />
             )
             }
         </main>
