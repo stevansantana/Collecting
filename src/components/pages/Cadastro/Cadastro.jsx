@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import {useForm} from 'react-hook-form'
 import './Cadastro.modules.css'
+import { Link } from 'react-router-dom';
 
 
 export default function Cadastro()
@@ -24,16 +25,16 @@ export default function Cadastro()
 
     return(
            
-           <Container className='mb-5 mt-5' >
+           <Container className='mb-5 mt-5 ' >
 
-               <Form className='border border-dark p-5 rounded text-white' onSubmit={handleSubmit(onSubmit, onError)}>
+               <Form className=' bg-dark border border-dark p-5 rounded text-white' onSubmit={handleSubmit(onSubmit, onError)}>
                 
                 <h1 className='text-primary text-center mb-3 fst-italic'>CADASTRO</h1>
 
                     <Row>
                         
                         <Form.Group as={Col}>
-                            <Form.Label className='mt-5 text-dark'>Nome Completo</Form.Label>
+                            <Form.Label className='mt-5 text-light'>Nome Completo</Form.Label>
                             <Form.Control className='border border-2 border-dark' type="text" placeholder='Digite seu nome completo' {...register("nomeCompleto", {required: "Por favor, digite seu nome completo"})}
                             onKeyUp={() =>{
                                 trigger("nomeCompleto")
@@ -42,7 +43,7 @@ export default function Cadastro()
                         </Form.Group>
 
                         <Form.Group as={Col}>
-                            <Form.Label className='mt-5 text-dark'>CPF</Form.Label>
+                            <Form.Label className='mt-5 text-light'>CPF</Form.Label>
                             <Form.Control className='border border-2 border-dark' maxLength={11} type="text" placeholder='Digite seu CPF' {...register("cpf", {required: "Por favor, digite seu CPF",
                             pattern: {
                                 value: /^[0-9]*$/,
@@ -67,7 +68,7 @@ export default function Cadastro()
                     </Row>
                     <Row>
                         <Form.Group as={Col}>
-                            <Form.Label className='mt-5 text-dark'>E-mail</Form.Label>
+                            <Form.Label className='mt-5 text-light'>E-mail</Form.Label>
                             <Form.Control className='border border-2 border-dark' type="email" placeholder='Informe seu e-mail' {...register("email", {required: "Por favor, digite seu e-mail",
                             pattern: {
                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -80,7 +81,7 @@ export default function Cadastro()
                         </Form.Group>
 
                         <Form.Group as={Col}>
-                            <Form.Label className='mt-5 text-dark'>Celular</Form.Label>
+                            <Form.Label className='mt-5 text-light'>Celular</Form.Label>
                             <Form.Control className='border border-2 border-dark' maxLength={11} type="tel" placeholder='Digite seu número de celular' {...register("celular", {required: "Por favor, informe seu número de celular",
                             pattern: {
                                     value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-.]*(\d{4})(?: *x(\d+))?\s*$/,
@@ -96,7 +97,7 @@ export default function Cadastro()
                     </Row>
                     <Row>
                         <Form.Group as={Col}>
-                            <Form.Label className='mt-5 text-dark'>Senha</Form.Label>
+                            <Form.Label className='mt-5 text-light'>Senha</Form.Label>
                             <Form.Control className='border border-2 border-dark' type="password" placeholder='Defina sua senha' {...register("senha", {required: "Por favor, defina sua senha"})}
                              onKeyUp={() =>{
                                 trigger("senha")
@@ -105,7 +106,7 @@ export default function Cadastro()
                         </Form.Group>
 
                         <Form.Group as={Col}>
-                            <Form.Label className='mt-5 text-dark'>Confirmar Senha</Form.Label>
+                            <Form.Label className='mt-5 text-light'>Confirmar Senha</Form.Label>
                             <Form.Control className='border border-2 border-dark' type="password" placeholder='Confirme sua senha'  {...register("confirmarSenha", {required: "Por favor, confirme sua senha"})}
                              onKeyUp={() =>{
                                 trigger("confirmarSenha")
@@ -118,7 +119,7 @@ export default function Cadastro()
 
                     <Form.Group className='mt-5'>
 
-                        <Button className="btn btn-danger me-3" href="#">Retornar</Button>
+                        <Link to={'/Login'}><Button className="btn btn-danger me-3">Login</Button></Link>
                         <Button className="btn btn-success" type="submit">Cadastrar</Button>
 
                     </Form.Group>

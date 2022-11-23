@@ -47,7 +47,7 @@ export default function Carrinho() {
                 <Link to={'/'}>
                     <Button conteudoBtn='Adicionar mais itens' />
                 </Link>
-                <Button conteudoBtn='Finalizar compra' />
+                <Link to={'/Pagamento'}><Button conteudoBtn='Finalizar compra' /></Link>
             </div>
 
         </main>

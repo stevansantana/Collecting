@@ -14,7 +14,9 @@ export default function NavBar() {
                     Meus pedidos
                 </li>
                 <li>
-                    Login
+                    <Link to={'/Login'}>
+                        Login
+                    </Link>
                 </li>
                 <li>
                     Chat
