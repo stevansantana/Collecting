@@ -2,15 +2,20 @@
   "products": [
     {
       "linkImg": "https://via.placeholder.com/200",
-      "name": "ps2",
-      "price": 0,
-      "id": 3
-    },
-    {
-      "linkImg": "https://via.placeholder.com/200",
       "name": "teste",
       "price": 0,
       "id": 4
+    }
+  ],
+  "cadastros": [
+    {
+      "nomeCompleto": "Gabriel f",
+      "cpf": "18199788771",
+      "email": "francobarreto1708@gmail.com",
+      "celular": "21969321299",
+      "senha": "123",
+      "confirmarSenha": "123",
+      "id": 18199788771
     }
   ]
 }
