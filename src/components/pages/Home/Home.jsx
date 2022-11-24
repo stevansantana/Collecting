@@ -47,6 +47,7 @@ export default function Home() {
                             } else if (value.name.toLowerCase().includes(productoBuscado.toLowerCase())) {
                                 return value;
                             }
+                            return value
                         }).map((produto) =>
                             <CardProduto
                                 linkImg={produto.linkImg}

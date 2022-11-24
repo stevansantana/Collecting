@@ -2,21 +2,15 @@
   "products": [
     {
       "linkImg": "https://via.placeholder.com/200",
-      "name": "teste2",
-      "price": "233",
-      "id": 1
-    },
-    {
-      "linkImg": "https://via.placeholder.com/200",
-      "name": "tazo",
-      "price": 0,
-      "id": 2
-    },
-    {
-      "linkImg": "https://via.placeholder.com/200",
       "name": "ps2",
       "price": 0,
       "id": 3
+    },
+    {
+      "linkImg": "https://via.placeholder.com/200",
+      "name": "teste",
+      "price": 0,
+      "id": 4
     }
   ]
 }
