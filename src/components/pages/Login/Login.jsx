@@ -1,9 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Button from 'react-bootstrap/Button';
+
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import {useForm} from 'react-hook-form'
-import './Login.modules.css'
+
+import { Link } from 'react-router-dom';
 
 export default function Login()
 {
@@ -22,7 +23,7 @@ export default function Login()
     return(
 
         <>
-          <Container className='d-flex justify-content-center align-items-end '>
+          <Container className='d-flex justify-content-center align-items-end mb-5 mt-5'>
 
             <Form className='border border-dark p-5 rounded bg-dark text-white' onSubmit={handleSubmit(onSubmit, onError)}>
 
@@ -56,7 +57,7 @@ export default function Login()
                  <Form.Group  className='d-flex mt-3'>
 
                     <p className='mt-3'>Não tem conta?</p>
-                    <Button variant="link">Cadastre-se</Button>
+                    <Link to={'/sign-up'} className='mt-3 ms-3 text-decoration-none'>Cadastre-se</Link>
 
                 </Form.Group>
                  

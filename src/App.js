@@ -7,13 +7,16 @@ import Produto from './components/pages/Produto/Produto';
 import NovoProduto from './components/pages/NovoProduto/NovoProduto';
 import Chat from './components/pages/Chat/Chat';
 import "./style.scss";
-import Carrinho from './components/pages/Carrinho/Carrinho'
-import Cadastro from './components/pages/Cadastro/Cadastro'
+import Carrinho from './components/pages/Carrinho/Carrinho';
+import Cadastro from './components/pages/Cadastro/Cadastro';
+import Login from './components/pages/Login/Login';
+import Pagamento from './components/pages/Pagamento/Pagamento';
 
 function App() {
 
   return (
     <Router>
+      
       <RecoilRoot>
         <Header />
         <Routes>
@@ -23,6 +26,8 @@ function App() {
           <Route path='/sign-up' element={<Cadastro />} />
           <Route path='/Chat' element={<Chat />} />
           <Route path='/cart' element={<Carrinho />} />
+          <Route path='/Login' element={<Login />} />
+          <Route path='/pagamento' element={<Pagamento />} />
         </Routes>
         <Footer />
       </RecoilRoot>

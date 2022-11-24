@@ -2,8 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useForm} from 'react-hook-form'
 import Pix from '../../../assets/pix.png'
 import styles from './Pagamento.module.css'
-import Header from '../../layout/Header/Header'
-import Footer from '../../layout/Footer/Footer'
+import { Link } from "react-router-dom";
 
 export default function Pagamento(){
 
@@ -21,8 +20,6 @@ export default function Pagamento(){
 
     return(
         <>
-            <Header></Header>
-
             <h1 id={styles.mainTitle}>PAGAMENTO</h1>
             <form onSubmit={handleSubmit(onSubmit, onError)}>
 
@@ -43,7 +40,7 @@ export default function Pagamento(){
 
                         <div className="col">
                             <label className="form-label">CPF</label>
-                            <input className="form-control" type="text" {...register("cpf", {required: "Por favor, digite seu CPF",
+                            <input className="form-control" type="text" maxLength={11} {...register("cpf", {required: "Por favor, digite seu CPF",
                             pattern: {
                                 value: /^[0-9]*$/,
                                 message: "Use somente números"
@@ -83,7 +80,7 @@ export default function Pagamento(){
 
                         <div className="col">
                             <label className="form-label mt-3">Celular</label>
-                            <input className="form-control" type="tel" {...register("celular", {required: "Por favor, informe seu número de celular",
+                            <input className="form-control" type="tel" maxLength={11} {...register("celular", {required: "Por favor, informe seu número de celular",
                             pattern: {
                                     value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-.]*(\d{4})(?: *x(\d+))?\s*$/,
                                     message: "Use somente número juntamente com o DDD"
@@ -124,7 +121,7 @@ export default function Pagamento(){
 
                         <div className="col">
                             <label className="form-label mt-3">CEP</label>
-                            <input className="form-control" type="text" {...register("cep", {required: "Por favor, informe o seu CEP",
+                            <input className="form-control" type="text" maxLength={8} {...register("cep", {required: "Por favor, informe o seu CEP",
                             pattern:{
                                 value: /^[0-9]*$/,
                                 message: "Use somente números"
@@ -244,7 +241,7 @@ export default function Pagamento(){
 
                     <div className="mt-5 mb-5">
                        
-                        <button className="btn btn-primary me-3" href="#">Retornar ao Carrinho</button>
+                        <Link to={'/cart'}><button className="btn btn-primary me-3" href="#">Retornar ao Carrinho</button></Link>
                         <button className="btn btn-success" type="submit">Finalizar Compra</button>
 
                     </div>
@@ -252,7 +249,6 @@ export default function Pagamento(){
 
             </form>
 
-            <Footer></Footer>
         </>
     )
 }
