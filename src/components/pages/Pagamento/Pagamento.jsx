@@ -20,27 +20,32 @@ export default function Pagamento(){
 
     return(
         <>
-            <h1 id={styles.mainTitle}>PAGAMENTO</h1>
+            <div id={styles.mainTitle}>
+                <div id={styles.firstTitle}>
+                    <h1>PAGAMENTO</h1>
+                </div>
+            </div>
+            
             <form onSubmit={handleSubmit(onSubmit, onError)}>
 
                 <div className="container">
 
-                    <p className={styles.titulo}>INFORME SEUS DADOS PESSOAIS</p>
+                    <p className=' mb-5 fs-2 fst-italic'>INFORME SEUS DADOS PESSOAIS</p>
 
                     <div className="row">
 
-                        <div className="col">
+                        <div className="col mt-2">
                             <label className="form-label">Nome Completo</label>
-                            <input className="form-control" type="text" {...register("nomeCompleto", {required: "Por favor, digite seu nome completo"})}
+                            <input className="form-control border border-secondary rounded-pill" type="text" {...register("nomeCompleto", {required: "Por favor, digite seu nome completo"})}
                             onKeyUp={() =>{
                                 trigger("nomeCompleto")
                             }}></input>
                             {errors.nomeCompleto && (<small className="text-danger">{errors.nomeCompleto.message}</small>)}
                         </div>
 
-                        <div className="col">
+                        <div className="col mt-2">
                             <label className="form-label">CPF</label>
-                            <input className="form-control" type="text" maxLength={11} {...register("cpf", {required: "Por favor, digite seu CPF",
+                            <input className="form-control border border-secondary rounded-pill" type="text" maxLength={11} {...register("cpf", {required: "Por favor, digite seu CPF",
                             pattern: {
                                 value: /^[0-9]*$/,
                                 message: "Use somente números"
@@ -67,7 +72,7 @@ export default function Pagamento(){
 
                         <div className="col">
                             <label className="form-label mt-3">E-mail</label>
-                            <input className="form-control" type="email" {...register("email", {required: "Por favor, digite seu e-mail",
+                            <input className="form-control border border-secondary rounded-pill" type="email" {...register("email", {required: "Por favor, digite seu e-mail",
                             pattern: {
                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                 message: "E-mail inválido"
@@ -80,7 +85,7 @@ export default function Pagamento(){
 
                         <div className="col">
                             <label className="form-label mt-3">Celular</label>
-                            <input className="form-control" type="tel" maxLength={11} {...register("celular", {required: "Por favor, informe seu número de celular",
+                            <input className="form-control border border-secondary rounded-pill" type="tel" maxLength={11} {...register("celular", {required: "Por favor, informe seu número de celular",
                             pattern: {
                                     value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-.]*(\d{4})(?: *x(\d+))?\s*$/,
                                     message: "Use somente número juntamente com o DDD"
@@ -97,16 +102,16 @@ export default function Pagamento(){
 
                         <div className="col">
                             <label className="form-label mt-3">Senha</label>
-                            <input className="form-control" type="password" {...register("senha", {required: "Por favor, informe sua senha"})}
+                            <input className="form-control border border-secondary rounded-pill" type="password" {...register("senha", {required: "Por favor, informe sua senha"})}
                              onKeyUp={() =>{
                                 trigger("senha")
                             }}></input>
                             {errors.senha && (<small className="text-danger">{errors.senha.message}</small>)}
                         </div>
 
-                        <div className="col">
+                        <div className="col mb-5">
                             <label className="form-label mt-3">Confirmar Senha</label>
-                            <input className="form-control" type="password" {...register("confirmarSenha", {required: "Por favor, confirme sua senha"})}
+                            <input className="form-control border border-secondary rounded-pill" type="password" {...register("confirmarSenha", {required: "Por favor, confirme sua senha"})}
                              onKeyUp={() =>{
                                 trigger("confirmarSenha")
                             }}></input>
@@ -115,13 +120,13 @@ export default function Pagamento(){
 
                     </div>
 
-                    <p className={styles.titulo}>INFORME OS DADOS DO SEU ENDEREÇO</p>
+                    <p className='mt-5 mb-5 fs-2 fst-italic'>INFORME OS DADOS DO SEU ENDEREÇO</p>
 
                     <div className="row">
 
-                        <div className="col">
+                        <div className="col mt-2">
                             <label className="form-label mt-3">CEP</label>
-                            <input className="form-control" type="text" maxLength={8} {...register("cep", {required: "Por favor, informe o seu CEP",
+                            <input className="form-control border border-secondary rounded-pill" type="text" maxLength={8} {...register("cep", {required: "Por favor, informe o seu CEP",
                             pattern:{
                                 value: /^[0-9]*$/,
                                 message: "Use somente números"
@@ -143,9 +148,9 @@ export default function Pagamento(){
                             {errors.cep && (<small className="text-danger">{errors.cep.message}</small>)}
                         </div>
 
-                        <div className="col">
+                        <div className="col mt-2">
                             <label className="form-label mt-3">Endereço</label>
-                            <input className="form-control" type="text" {...register("endereco", {required: "Por favor, informe o seu endereço"})}
+                            <input className="form-control border border-secondary rounded-pill" type="text" {...register("endereco", {required: "Por favor, informe o seu endereço"})}
                              onKeyUp={() =>{
                                 trigger("endereco")
                             }}></input>
@@ -158,7 +163,7 @@ export default function Pagamento(){
 
                         <div className="col">
                             <label className="form-label mt-3">Complemento</label>
-                            <input className="form-control" type="text" {...register("complemento", {required: "Por favor, informe o complemento de seu endereço"})}
+                            <input className="form-control border border-secondary rounded-pill" type="text" {...register("complemento", {required: "Por favor, informe o complemento de seu endereço"})}
                              onKeyUp={() =>{
                                 trigger("complemento")
                             }}></input>
@@ -167,7 +172,7 @@ export default function Pagamento(){
 
                         <div className="col">
                             <label className="form-label mt-3">Número</label>
-                            <input className="form-control" type="number" {...register("numero", {required: "Por favor, informe o número de seu endereço",
+                            <input className="form-control border border-secondary rounded-pill" type="number" {...register("numero", {required: "Por favor, informe o número de seu endereço",
                             pattern: {
                                 value: /^[0-9]*$/,
                                 message: "Use somente números"
@@ -184,7 +189,7 @@ export default function Pagamento(){
 
                         <div className="col">
                             <label className="form-label mt-3">Cidade</label>
-                            <input className="form-control" type="text" {...register("cidade", {required: "Por favor, informe a sua cidade",
+                            <input className="form-control border border-secondary rounded-pill" type="text" {...register("cidade", {required: "Por favor, informe a sua cidade",
                             minLength: {
                                 value: 3,
                                 message: "Cidade inválida"
@@ -195,9 +200,9 @@ export default function Pagamento(){
                             {errors.cidade && (<small className="text-danger">{errors.cidade.message}</small>)}
                         </div>
 
-                        <div className="col">
+                        <div className="col mb-4">
                             <label className="form-label mt-3">Estado</label>
-                            <select className="form-control" {...register("estado", {required: "Por favor, informe o seu estado"})}
+                            <select className="form-control border border-secondary rounded-pill" {...register("estado", {required: "Por favor, informe o seu estado"})}
                             onKeyUp={() =>{
                                 trigger("estado")
                             }}>
@@ -234,9 +239,8 @@ export default function Pagamento(){
 
                     </div>
 
-                    <p className={styles.titulo}>MEIO DE PAGAMENTO</p>
+                    <p className='mt-5 mb-5 fs-2 fst-italic'>MEIO DE PAGAMENTO</p>
 
-                    <p id={styles.pixTitulo}>PIX</p>
                     <img className={styles.imagem} src={Pix} alt="Pix"></img>
 
                     <div className="mt-5 mb-5">

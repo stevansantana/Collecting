@@ -1,28 +1,33 @@
 
 #mainTitle
 {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 30px;
 }
 
-.titulo
+#firstTitle
 {
-    font-size: x-large;
+    display: flex;
     font-style: italic;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-#pixTitulo
-{
-    display: inline;
-    font-size: 23px;
+    font-size: larger;
+    border-style: solid;
+    border-color: black;
+    margin-bottom: 80px;
+    margin-top: 20px;
+    padding: 30px;
+    border-radius: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, hsl(0, 0%, 0%) , rgb(56, 56, 56));
+    color: #fff;
+    box-shadow: 3px 3px 3px 3px black;
 }
 
 .imagem
 {
-    margin-left: 15px;
-    height: 40px;
+    height: 80px;
+    margin-bottom: 50px;
 }
 
 

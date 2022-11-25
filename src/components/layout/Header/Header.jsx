@@ -1,8 +1,8 @@
 import styles from './Header.module.css'
 import { seekProductState } from '../../../atoms'
 import { Link } from 'react-router-dom'
-import NavBar from '../NavBar/NavBar'
 import { useRecoilState } from 'recoil'
+import NavBurger from '../NavBurger/NavBurger'
 
 export default function Header() {
 
@@ -26,7 +26,7 @@ export default function Header() {
                     />
                 </div>
             </div>
-            <NavBar />
+            <NavBurger/>
         </header>
     )
 }
