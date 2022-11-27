@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Input from '../../form/Input/Input'
@@ -6,10 +5,7 @@ import Button from '../../layout/Button/Button'
 import styles from './EditPage.module.css'
 import { productState } from '../../../atoms'
 import { useRecoilState } from 'recoil'
-
-const api = axios.create({
-    baseURL: `http://localhost:5000/products`
-})
+import { apiProducts } from '../../../apiEndpoints'
 
 export default function EditPage() {
 
@@ -21,13 +17,13 @@ export default function EditPage() {
 
     // Get produto pelo id
     useState(() => {
-        api.get(`/${id}`)
+        apiProducts.get(`/${id}`)
             .then(resp => setProduct(resp.data))
     }, [])
 
     // Atualiza os dados do produto
     function updateProduct() {
-        api.put(`/${id}`, {
+        apiProducts.put(`/${id}`, {
             linkImg: product.linkImg,
             name: newName || product.name,
             price: newPrice || product.price

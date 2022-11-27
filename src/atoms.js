@@ -14,6 +14,19 @@ export const productState = atom({
     default: 'Sem produto'
 })
 
+export const users = selector({
+    key: 'users',
+    get: async () =>{
+        try{
+            const response = await axios('http://localhost:5000/cadastros')
+            return response.data || []
+        } catch(error){
+            console.log(error)
+            return []
+        }
+    }
+})
+
 // Recebe os itens cadastrados no banco de dados
 export const products = selector({
     key: 'products',

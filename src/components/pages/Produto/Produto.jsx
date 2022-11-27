@@ -3,13 +3,9 @@ import Button from '../../layout/Button/Button'
 import { useState } from 'react'
 import EditPage from '../EditPage/EditPage'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
 import { useRecoilState } from 'recoil'
 import { productState } from '../../../atoms'
-
-const api = axios.create({
-    baseURL: `http://localhost:5000/products`
-})
+import { apiProducts } from '../../../apiEndpoints'
 
 export default function Produto() {
 
@@ -20,7 +16,7 @@ export default function Produto() {
     const { id } = useParams()
 
     useState(() => {
-        api.get(`/${id}`)
+        apiProducts.get(`/${id}`)
             .then(resp => setProduto(resp.data))
     })
 
