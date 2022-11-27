@@ -15,9 +15,9 @@ export default function Login() {
 
     const onSubmit = (data) => {
         const userExist = usersList.filter((user) => {
-            return user.email === data.usuario
+            return user.email === data.usuario && user.senha === data.senha
         })
-        const doesUserExist = userExist.length === 0 ? false : true
+        const doesUserExist = userExist.length !== 0 ? true : false
         console.log(doesUserExist)
         reset()
     }
@@ -27,49 +27,46 @@ export default function Login() {
     }
 
     return (
+        <Container className='d-flex justify-content-center align-items-end mb-5 mt-5'>
 
-        <>
-            <Container className='d-flex justify-content-center align-items-end mb-5 mt-5'>
+            <Form className='border border-dark p-5 rounded bg-dark text-white' onSubmit={handleSubmit(onSubmit, onError)}>
 
-                <Form className='border border-dark p-5 rounded bg-dark text-white' onSubmit={handleSubmit(onSubmit, onError)}>
+                <h1 className='text-primary'>Bem vindo ao Collecting</h1>
+                <Form.Group>
 
-                    <h1 className='text-primary'>Bem vindo ao Collecting</h1>
-                    <Form.Group>
+                    <Form.Label className='mt-5'>Usuário</Form.Label>
+                    <Form.Control type='text' placeholder='Digite seu nome' {...register("usuario", { required: "Por favor, digite seu nome" })}
+                        onKeyUp={() => {
+                            trigger("usuario")
+                        }}></Form.Control>
+                    {errors.usuario && (<small className="text-danger">{errors.usuario.message}</small>)}
+                </Form.Group>
 
-                        <Form.Label className='mt-5'>Usuário</Form.Label>
-                        <Form.Control type='text' placeholder='Digite seu nome' {...register("usuario", { required: "Por favor, digite seu nome" })}
-                            onKeyUp={() => {
-                                trigger("usuario")
-                            }}></Form.Control>
-                        {errors.usuario && (<small className="text-danger">{errors.usuario.message}</small>)}
-                    </Form.Group>
+                <Form.Group>
 
-                    <Form.Group>
+                    <Form.Label className='mt-5'>Senha</Form.Label>
+                    <Form.Control type='password' placeholder='Digite sua senha' {...register("senha", { required: "Por favor, informe sua senha" })}
+                        onKeyUp={() => {
+                            trigger("senha")
+                        }}></Form.Control>
+                    {errors.senha && (<small className="text-danger">{errors.senha.message}</small>)}
+                </Form.Group>
 
-                        <Form.Label className='mt-5'>Senha</Form.Label>
-                        <Form.Control type='password' placeholder='Digite sua senha' {...register("senha", { required: "Por favor, informe sua senha" })}
-                            onKeyUp={() => {
-                                trigger("senha")
-                            }}></Form.Control>
-                        {errors.senha && (<small className="text-danger">{errors.senha.message}</small>)}
-                    </Form.Group>
+                <Form.Group>
 
-                    <Form.Group>
+                    <Form.Control className='btn btn-primary mt-5' type='submit' value='Login'></Form.Control>
 
-                        <Form.Control className='btn btn-primary mt-5' type='submit' value='Login'></Form.Control>
+                </Form.Group>
 
-                    </Form.Group>
+                <Form.Group className='d-flex mt-3'>
 
-                    <Form.Group className='d-flex mt-3'>
+                    <p className='mt-3'>Não tem conta?</p>
+                    <Link to={'/sign-up'} className='mt-3 ms-3 text-decoration-none'>Cadastre-se</Link>
 
-                        <p className='mt-3'>Não tem conta?</p>
-                        <Link to={'/sign-up'} className='mt-3 ms-3 text-decoration-none'>Cadastre-se</Link>
+                </Form.Group>
 
-                    </Form.Group>
+            </Form>
 
-                </Form>
-
-            </Container>
-        </>
+        </Container>
     )
 }

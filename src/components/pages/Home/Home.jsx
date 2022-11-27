@@ -4,29 +4,16 @@ import { products, seekProductState } from "../../../atoms";
 import CardProduto from "../CardProduto/CardProduto";
 import styles from "./Home.module.css"
 import Button from "../../layout/Button/Button"
-import axios from "axios";
-
-
-const api = axios.create({
-    baseURL: `http://localhost:5000/products`
-})
-
+import { apiProducts } from '../../../apiEndpoints'
 
 export default function Home() {
     /* Itens cadastrados */
 
     const produtoCadastrado = useRecoilValue(products)
     const productoBuscado = useRecoilValue(seekProductState)
-    //const [products, setProducts] = useState([])
-
-    //useEffect(() => {
-    //  api.get('/').then(response => {
-    //    setProducts(response.data)
-    //        })
-    //  }, [])
-
+   
     function removeProducts(id) {
-        api.delete(`/${id}`);
+        apiProducts.delete(`/${id}`);
         window.location.reload(false)
     }
 

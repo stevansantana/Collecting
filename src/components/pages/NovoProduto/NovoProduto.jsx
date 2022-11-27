@@ -2,12 +2,8 @@ import styles from './NovoProduto.module.css'
 import Button from '../../layout/Button/Button'
 import Input from '../../form/Input/Input'
 import { useState } from 'react'
-import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
-
-const api = axios.create({
-    baseURL: `http://localhost:5000/products`
-})
+import { apiProducts } from '../../../apiEndpoints'
 
 export default function NovoProduto() {
 
@@ -16,7 +12,7 @@ export default function NovoProduto() {
     const navigate = useNavigate();
 
     function postProduct() {
-        api.post('/', {
+        apiProducts.post('/', {
             linkImg: "https://via.placeholder.com/200",
             name: productName || 'Sem nome',
             price: productPrice || 0

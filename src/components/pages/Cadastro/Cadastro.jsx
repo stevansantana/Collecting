@@ -7,11 +7,8 @@ import Container from 'react-bootstrap/Container';
 import { useForm } from 'react-hook-form'
 import './Cadastro.modules.css'
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { apiSign } from '../../../apiEndpoints';
 
-const api = axios.create({
-    baseURL: 'http://localhost:5000/cadastros'
-})
 
 export default function Cadastro() {
 
@@ -23,8 +20,8 @@ export default function Cadastro() {
             id: Number(data.cpf)
         }
         console.log(userData)
-        api.post('/', userData)
-        //reset()
+        apiSign.post('/', userData)
+        reset()
     }
 
     const onError = (errors) => {

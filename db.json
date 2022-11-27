@@ -2,9 +2,9 @@
   "products": [
     {
       "linkImg": "https://via.placeholder.com/200",
-      "name": "teste",
-      "price": 0,
-      "id": 4
+      "name": "Prod",
+      "price": "2500",
+      "id": 1
     }
   ],
   "cadastros": [
