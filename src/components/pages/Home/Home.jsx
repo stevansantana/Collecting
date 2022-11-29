@@ -4,17 +4,21 @@ import { products, seekProductState } from "../../../atoms";
 import CardProduto from "../CardProduto/CardProduto";
 import styles from "./Home.module.css"
 import Button from "../../layout/Button/Button"
-import { apiProducts } from '../../../apiEndpoints'
+import { api } from '../../../apiEndpoints'
+
 
 export default function Home() {
     /* Itens cadastrados */
 
+
     const produtoCadastrado = useRecoilValue(products)
     const productoBuscado = useRecoilValue(seekProductState)
-   
+
+
     function removeProducts(id) {
-        apiProducts.delete(`/${id}`);
+        api.delete(`produtos/${id}`);
         window.location.reload(false)
+        
     }
 
     return (

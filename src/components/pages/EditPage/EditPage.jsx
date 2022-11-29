@@ -5,7 +5,7 @@ import Button from '../../layout/Button/Button'
 import styles from './EditPage.module.css'
 import { productState } from '../../../atoms'
 import { useRecoilState } from 'recoil'
-import { apiProducts } from '../../../apiEndpoints'
+import { api } from '../../../apiEndpoints'
 
 export default function EditPage() {
 
@@ -17,13 +17,13 @@ export default function EditPage() {
 
     // Get produto pelo id
     useState(() => {
-        apiProducts.get(`/${id}`)
+        api.get(`produtos/${id}`)
             .then(resp => setProduct(resp.data))
     }, [])
 
     // Atualiza os dados do produto
     function updateProduct() {
-        apiProducts.put(`/${id}`, {
+        api.put(`produtos/${id}`, {
             linkImg: product.linkImg,
             name: newName || product.name,
             price: newPrice || product.price
