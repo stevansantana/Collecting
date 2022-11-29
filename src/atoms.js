@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const { atom, selector } = require("recoil");
 
 
@@ -32,7 +33,7 @@ export const products = selector({
     key: 'products',
     get: async () => {
         try {
-            const resp = await axios('http://localhost:5000/products')
+            const resp = await axios('http://localhost:5000/produtos')
             return resp.data || []
         } catch (error) {
             console.log(error)

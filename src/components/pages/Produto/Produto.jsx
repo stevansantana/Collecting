@@ -5,7 +5,7 @@ import EditPage from '../EditPage/EditPage'
 import { useParams } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { productState } from '../../../atoms'
-import { apiProducts } from '../../../apiEndpoints'
+import { api } from '../../../apiEndpoints'
 
 export default function Produto() {
 
@@ -14,9 +14,9 @@ export default function Produto() {
 
     const [edit, setEdit] = useState(false)
     const { id } = useParams()
-
+    
     useState(() => {
-        apiProducts.get(`/${id}`)
+        api.get(`produtos/${id}`)
             .then(resp => setProduto(resp.data))
     })
 
