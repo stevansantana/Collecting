@@ -2,22 +2,34 @@ import styles from './NovoProduto.module.css'
 import Button from '../../layout/Button/Button'
 import Input from '../../form/Input/Input'
 import { useState } from 'react'
-import {useNavigate} from 'react-router-dom'
-import { apiProducts } from '../../../apiEndpoints'
+import { useNavigate } from 'react-router-dom'
+import { api } from '../../../apiEndpoints'
+import { useRecoilState } from 'recoil'
+import { productsListState } from '../../../atoms'
+
 
 export default function NovoProduto() {
 
     const [productName, setProductName] = useState()
     const [productPrice, setProductPrice] = useState()
+    const [produtos, setProdutos] = useRecoilState(productsListState)
     const navigate = useNavigate();
 
-    function postProduct() {
-        apiProducts.post('/', {
-            linkImg: "https://via.placeholder.com/200",
-            name: productName || 'Sem nome',
-            price: productPrice || 0
-        })
-        navigate('/')
+
+    async function postProduct() {
+        try {
+            const novoProduto = {
+                linkImg: "https://via.placeholder.com/200",
+                name: productName || 'Sem nome',
+                price: productPrice || 0
+            }
+            const criarProduto =  await api.post('/produtos', novoProduto)
+            setProdutos([...produtos, criarProduto])
+
+            navigate('/')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (

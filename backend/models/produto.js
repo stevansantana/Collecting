@@ -7,4 +7,5 @@ const produtoSchema = new mongoose.Schema({
     linkImg: String
 })
 
+
 module.exports = produtoSchema

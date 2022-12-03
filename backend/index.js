@@ -11,7 +11,7 @@ const dbUri = 'mongodb://127.0.0.1:27017/collecting'
 app.use(cors())
 
 const connect = mongoose.connect(dbUri)
-connect.then((db) =>{
+connect.then((db) => {
     console.log("Conectado")
 }, (err) => console.log(err))
 

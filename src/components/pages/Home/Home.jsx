@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { products, seekProductState } from "../../../atoms";
+import { productsListState, seekProductState } from "../../../atoms";
 import CardProduto from "../CardProduto/CardProduto";
 import styles from "./Home.module.css"
 import Button from "../../layout/Button/Button"
@@ -11,9 +11,9 @@ export default function Home() {
     /* Itens cadastrados */
 
 
-    const produtoCadastrado = useRecoilValue(products)
+    const listaProdutos = useRecoilValue(productsListState)
     const productoBuscado = useRecoilValue(seekProductState)
-
+    console.log(listaProdutos)
 
     function removeProducts(id) {
         api.delete(`produtos/${id}`);
@@ -30,9 +30,9 @@ export default function Home() {
             </div>
             {/* Verifica se tem algum produto cadastrado e renderiza os produtos */}
             <div className={styles.card_container}>
-                {produtoCadastrado.length > 0 ?
+                {listaProdutos.length > 0 ?
                     (
-                        produtoCadastrado.filter((value) => {
+                        listaProdutos.filter((value) => {
                             if (productoBuscado === '') {
                                 return value
                             } else if (value.name.toLowerCase().includes(productoBuscado.toLowerCase())) {

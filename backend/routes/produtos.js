@@ -20,27 +20,24 @@ let produtos = [
     }
 ]
 
-
 router
-    .get('/', (req, res) => {
-        /*
-        Usar quando implementar o MongoDB
-        try{
+    .get('/', async (req, res) => {
+        try {
             const produtosb = await Produtos.find();
-            res.status(200).json(produtos)
-        } catch(error){
-            res.status(500).json({error: error})
+            res.status(200).json(produtosb)
+        } catch (error) {
+            res.status(500).json({ error: error })
         }
-        */
-        res.json(produtos)
+
     })
 
     .post('/', (req, res) => {
+        let maxId = Math.max(...produtos.map(({ id }) => id))
         produtos.push({
             linkImg: req.body.linkImg,
             name: req.body.name,
             price: req.body.price,
-            id: produtos[produtos.length - 1].id++
+            id: ++maxId
         })
     })
 
