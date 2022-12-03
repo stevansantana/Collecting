@@ -23,40 +23,54 @@ let produtos = [
 router
     .get('/', async (req, res) => {
         try {
-            const produtosb = await Produtos.find();
-            res.status(200).json(produtosb)
+            const produtosBanco = await Produtos.find({}).maxTimeMS(5000)
+            res.setHeader('Content-Type', 'application/json')
+            res.status(200).json(produtosBanco)
         } catch (error) {
-            res.status(500).json({ error: error })
+            console.log(error)
         }
 
     })
 
     .post('/', (req, res) => {
-        let maxId = Math.max(...produtos.map(({ id }) => id))
-        produtos.push({
-            linkImg: req.body.linkImg,
-            name: req.body.name,
-            price: req.body.price,
-            id: ++maxId
-        })
+        Produtos.create(req.body)
+            .then(produto => {
+                console.log('Produto criado ', produto)
+                res.setHeader('Content-Type', 'application/json')
+                res.status(200).json(produto)
+            })
+            .catch(err => console.log(err))
     })
 
 router
     .get('/:id', (req, res) => {
-        let produtoPorId = produtos.filter(produto => produto.id == req.params.id)[0]
-        res.json(produtoPorId)
+        Produtos.findById(req.params.id)
+            .then(resp => {
+                res.setHeader('Content-Type', 'application/json')
+                res.status(200).json(resp)
+            })
+            .catch(error => console.log(error))
     })
 
     .delete('/:id', (req, res) => {
-        produtos = produtos.filter(produto => produto.id != req.params.id)
-        res.json(produtos)
+        Produtos.findByIdAndRemove(req.params.id)
+            .then((resp) => {
+                res.setHeader('Content-Type', 'application/json')
+                res.status(200).json(resp)
+            })
+            .catch((error) => console.log(error))
     })
 
     .put('/:id', (req, res) => {
-        let produtoPorId = produtos.filter(produto => produto.id == req.params.id)[0]
-        produtoPorId.name = req.body.name
-        produtoPorId.price = req.body.price
-        res.json(produtoPorId)
+        Produtos.findByIdAndUpdate(req.params.id, {
+            $set: req.body
+        }, { new: true })
+            .then(produto => {
+                res.setHeader('Content-Type', 'application/json')
+                res.status(200).json(produto)
+            })
+            .catch(error => console.log(error))
+
     })
 
 

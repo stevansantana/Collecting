@@ -11,7 +11,7 @@
     font-family: 'Noto Sans', sans-serif;
 }
 
-.products_container .card_container{
+.products_container .card_container {
     display: grid;
     grid-template-areas: '1 2 3';
     row-gap: 40px;

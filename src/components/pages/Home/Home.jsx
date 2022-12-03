@@ -13,7 +13,6 @@ export default function Home() {
 
     const listaProdutos = useRecoilValue(productsListState)
     const productoBuscado = useRecoilValue(seekProductState)
-    console.log(listaProdutos)
 
     function removeProducts(id) {
         api.delete(`produtos/${id}`);
@@ -44,8 +43,8 @@ export default function Home() {
                                 linkImg={produto.linkImg}
                                 nome={produto.name}
                                 valor={produto.price}
-                                key={produto.id}
-                                id={produto.id}
+                                key={produto._id}
+                                id={produto._id}
                                 handleRemove={removeProducts}
                             />
                         )

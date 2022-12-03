@@ -14,6 +14,7 @@
     "express-session": "^1.17.3",
     "mongoose": "^6.7.4",
     "nodemon": "^2.0.20",
+    "normalize-mongoose": "^1.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
