@@ -1,14 +1,12 @@
 import styles from './Header.module.css'
 import { seekProductState } from '../../../atoms'
 import { Link } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import NavBurger from '../NavBurger/NavBurger'
 
 export default function Header() {
 
-    const [seekProductName, setSeekProductName] = useRecoilState(seekProductState)
-
-
+    const setSeekProductName = useSetRecoilState(seekProductState)
     return (
         <header className={styles.header}>
             <div>
@@ -21,12 +19,11 @@ export default function Header() {
                         name="procurar"
                         className="search-field"
                         placeholder="Procurar item"
-                        value={seekProductName}
                         onChange={e => setSeekProductName(e.target.value)}
                     />
                 </div>
             </div>
-            <NavBurger/>
+            <NavBurger />
         </header>
     )
 }

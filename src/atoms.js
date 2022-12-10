@@ -12,7 +12,7 @@ export const seekProductState = atom({
 
 export const productState = atom({
     key: 'productState',
-    default: 'Sem produto'
+    default: []
 })
 
 export const users = selector({
@@ -28,19 +28,7 @@ export const users = selector({
     }
 })
 
-// Recebe os itens cadastrados no banco de dados
-export const productsListState = atom({
-    key: 'productsListState',
-    default: selector({
-        key: 'products',
-        get: async () => {
-            try {
-                const resp = await axios('http://localhost:5000/produtos')
-                return resp.data
-            } catch (error) {
-                console.log(error)
-                return []
-            }
-        }
-    })
-}) 
+export const listaProdutos = atom({
+    key: 'listaProdutos',
+    default: []
+})

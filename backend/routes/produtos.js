@@ -43,13 +43,19 @@ router
     })
 
 router
-    .get('/:id', (req, res) => {
-        Produtos.findById(req.params.id)
-            .then(resp => {
-                res.setHeader('Content-Type', 'application/json')
-                res.status(200).json(resp)
-            })
-            .catch(error => console.log(error))
+    .get('/:id', async (req, res, next) => {
+        try {
+            const resp = await Produtos.findById(req.params.id)
+            if (resp == null) {
+                let err = new Error(`Produto ${req.params.id} não encontrado`)
+                err.status(404)
+                return next(err)
+            }
+            res.setHeader('Content-Type', 'application/json')
+            res.status(200).json(resp)
+        } catch (error) {
+            next(error)
+        }
     })
 
     .delete('/:id', (req, res) => {

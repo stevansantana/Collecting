@@ -3,18 +3,18 @@ import { useNavigate, useParams } from 'react-router-dom'
 import Input from '../../form/Input/Input'
 import Button from '../../layout/Button/Button'
 import styles from './EditPage.module.css'
-import { productState } from '../../../atoms'
+import { listaProdutos } from '../../../atoms'
 import { useRecoilState } from 'recoil'
 import { api } from '../../../apiEndpoints'
 
 export default function EditPage() {
 
     const { id } = useParams()
-    const [product, setProduct] = useRecoilState(productState)
+    const [product, setProduct] = useRecoilState(listaProdutos)
     const [newName, setNewName] = useState()
     const [newPrice, setNewPrice] = useState()
     const navigate = useNavigate();
-
+    
     // Get produto pelo id
     useState(() => {
         api.get(`produtos/${id}`)

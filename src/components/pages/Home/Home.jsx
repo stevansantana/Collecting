@@ -1,23 +1,29 @@
 import { Link } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { productsListState, seekProductState } from "../../../atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { seekProductState, listaProdutos } from "../../../atoms";
 import CardProduto from "../CardProduto/CardProduto";
 import styles from "./Home.module.css"
 import Button from "../../layout/Button/Button"
 import { api } from '../../../apiEndpoints'
+import { useEffect } from "react";
 
 
 export default function Home() {
-    /* Itens cadastrados */
+    const [produtos, setProdutos] = useRecoilState(listaProdutos)
+    useEffect(() => {
+        const getProducts = async () => {
+            await api.get('/produtos')
+                .then(resp => resp.data)
+                .then(data => setProdutos(data))
+        }
+        getProducts()
+    }, [setProdutos])
 
-
-    const listaProdutos = useRecoilValue(productsListState)
     const productoBuscado = useRecoilValue(seekProductState)
-
+    console.log(productoBuscado)
     function removeProducts(id) {
         api.delete(`produtos/${id}`);
         window.location.reload(false)
-        
     }
 
     return (
@@ -29,9 +35,9 @@ export default function Home() {
             </div>
             {/* Verifica se tem algum produto cadastrado e renderiza os produtos */}
             <div className={styles.card_container}>
-                {listaProdutos.length > 0 ?
+                {produtos.length > 0 ?
                     (
-                        listaProdutos.filter((value) => {
+                        produtos.filter((value) => {
                             if (productoBuscado === '') {
                                 return value
                             } else if (value.name.toLowerCase().includes(productoBuscado.toLowerCase())) {

@@ -2,35 +2,38 @@ import styles from './NovoProduto.module.css'
 import Button from '../../layout/Button/Button'
 import Input from '../../form/Input/Input'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { api } from '../../../apiEndpoints'
 import { useRecoilState } from 'recoil'
-import { productsListState } from '../../../atoms'
+import { listaProdutos } from '../../../atoms'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function NovoProduto() {
 
+
     const [productName, setProductName] = useState()
     const [productPrice, setProductPrice] = useState()
-    const [produtos, setProdutos] = useRecoilState(productsListState)
-    const navigate = useNavigate();
+    // eslint-disable-next-line no-unused-vars
+    const [produtos, setProdutos] = useRecoilState(listaProdutos)
+    const navigate = useNavigate()
 
-
-    async function postProduct() {
-        try {
-            const novoProduto = {
-                linkImg: "https://via.placeholder.com/200",
-                name: productName || 'Sem nome',
-                price: productPrice || 0
+    function postProduct() {
+        const postFunction = async () => {
+            try {
+                const novoProduto = {
+                    linkImg: "https://via.placeholder.com/200",
+                    name: productName || 'Sem nome',
+                    price: productPrice || 0
+                }
+                await api.post('/produtos', novoProduto)
+            } catch (error) {
+                console.log(error)
             }
-            const criarProduto =  await api.post('/produtos', novoProduto)
-            setProdutos([...produtos, criarProduto])
-
-            navigate('/')
-        } catch (error) {
-            console.log(error)
         }
+        postFunction()
+        navigate('/')
     }
+
 
     return (
         <main className={styles.form_container}>
