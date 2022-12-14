@@ -1,73 +1,46 @@
-const express = require('express')
-const session = require('express-session')
-const fileUpload = require('express-fileupload')
-const mongoose = require('mongoose')
-const cookieParser = require('cookie-parser')
-const cors = require('cors')
-const logger = require('morgan')
+var express = require('express')
+var session = require('express-session')
+var FileStore = require('session-file-store')(session)
+var passport = require('passport')
+var authenticate = require('./authenticate')
+var fileUpload = require('express-fileupload')
+var mongoose = require('mongoose')
+var cors = require('cors')
+var logger = require('morgan')
 var path = require('path')
-const app = express()
-const produtosRouter = require('./routes/produtos')
-const port = 5000
-const dbUri = 'mongodb://127.0.0.1:27017/collecting'
+var config = require('./config')
+var app = express()
+var produtosRouter = require('./routes/produtos')
+var usersRouter = require('./routes/users')
+var port = 5000
+var dbUri = config.mongoUrl
+
+
 
 app.use(cors())
 
 const connect = mongoose.connect(dbUri)
 connect.then((db) => {
-    console.log("Conectado")
+   console.log("Conectado")
 }, (err) => console.log(err))
 
 app.use(express.json())
 app.use(fileUpload({
-    useTempFiles: true,
-    tempFileDir: path.join(__dirname, 'temp')
+   useTempFiles: true,
+   tempFileDir: path.join(__dirname, 'temp')
 }))
 app.use(logger('dev'))
-app.use(cookieParser('54321-67890-09876-54321'))
+//app.use(cookieParser('54321-67890-09876-54321'))
 
-function auth(req, res, next) {
-    console.log(req.headers)
-    if (!req.signedCookies.user) {
 
-        var authHeader = req.headers.authorization
-        if (!authHeader) {
-            var err = new Error('You are not authenticated')
-            res.setHeader('WWW-Authenticate', 'Basic')
-            err.status = 401
-            next(err)
-            return
-        }
+app.use(passport.initialize())
 
-        var auth = new Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':')
-        var user = auth[0]
-        var pass = auth[1]
-        if (user == 'admin' && pass == 'password') {
-            res.cookie('user', 'admin', { signed: true })
-            next() //authorized
-        } else {
-            var err = new Error('You are not authenticated')
-            res.setHeader('WWW-Authenticate', 'Basic')
-            err.status = 401
-            next(err)
-        }
-    } else {
-        if (req.signedCookies.user === 'admin') {
-            next()
-        } else {
-            var err = new Error('You are not authenticated')
-            res.setHeader('WWW-Authenticate', 'Basic')
-            err.status = 401
-        }
-    }
-}
-
-app.use(auth)
-
+app.use('/users', usersRouter)
+app.use(express.static(path.join(__dirname, 'public')))
 app.use('/produtos', produtosRouter)
 
 app.listen(port, () => {
-    console.log(`Rodando na porta ${port}`)
+   console.log(`Rodando na porta ${port}`)
 })
 
 
