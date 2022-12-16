@@ -2,24 +2,8 @@ const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
 const Produtos = require('../models/produto')
-const { authenticate } = require('passport')
 
 router.use(bodyParser.json())
-
-let produtos = [
-   {
-      "linkImg": "https://via.placeholder.com/200",
-      "name": "Prod",
-      "price": "250",
-      "id": 1
-   },
-   {
-      "linkImg": "https://via.placeholder.com/200",
-      "name": "Prod2",
-      "price": "280",
-      "id": 2
-   }
-]
 
 router.route('/')
    .get(async (req, res) => {

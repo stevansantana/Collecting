@@ -2,49 +2,78 @@ var express = require('express')
 var router = express.Router()
 var bodyParser = require('body-parser')
 var Users = require('../models/users')
-var passport = require('passport')
-var authenticate = require('../authenticate')
+var jwt = require('jsonwebtoken')
+
 router.use(bodyParser.json())
 
 router
-   .post('/signup', (req, res, next) => {
-      Users.register(new Users({ username: req.body.username }), req.body.password, (err, user) => {
-         if (err) {
-            res.statusCode = 500
-            res.setHeader('Content-Type', 'application/json')
-            res.json({ err: err })
-         }
-         else {
-            passport.authenticate('local')(req, res, () => {
-               res.statusCode = 200
-               res.setHeader('Content-Type', 'application/json')
-               res.json({ success: true, status: 'Registrado com sucesso!' })
-            })
-         }
+   .post('/signup', async (req, res, next) => {
+      const { name, email, password, confirmPassword } = req.body
+      const userExists = await Users.findOne({ email: email })
+
+      if (!name || !email || !password || !confirmPassword) {
+         return res.status(422).json({ msg: "[ERRO] Dados faltando!" })
+      }
+
+      if (password !== confirmPassword) {
+         return res.status(422).json({ msg: "[ERRO] A duas senhas devem ser idênticas!" })
+      }
+
+      if (userExists) {
+         return res.status(422).json({ msg: "[ERRO] Usuário já cadastrado!" })
+      }
+      const user = new Users({
+         name,
+         email,
+         password
       })
 
-   })
-
-   .post('/login', passport.authenticate('local'), (req, res) => {
-      var token = authenticate.getToken({ _id: req.user._id })
-      res.statusCode = 200
-      res.setHeader('Content-Type', 'application/json')
-      res.json({ success: true, token: token, status: 'Você está logado!' })
-   })
-
-   .get('/logout', (req, res, next) => {
-      if (req.session) {
-         req.session.destroy()
-         res.clearCookie('session-id')
-         res.redirect('/')
+      try {
+         await user.save()
+         res.status(201).json({ msg: "[SUCESSO] Usuário criado com sucesso!" })
+      } catch (error) {
+         console.log(error)
+         res.status(500).json({ msg: "Erro no servidor" })
       }
-      else {
-         var err = new Error('Você não está logado!')
-         err.status(403)
-         next(err)
+
+   })
+
+   .post('/login', async (req, res) => {
+      const { email, password } = req.body
+      const user = await Users.findOne({ email: email })
+      const checkPassword = password === user.password ? true : false
+
+
+      if (!email || !password) {
+         return res.status(422).json({ msg: "[ERRO] Dados faltando!" })
       }
+
+      if (!user) {
+         return res.status(404).json({ msg: "[ERRO] Usuário não existe!" })
+      }
+
+      if (!checkPassword) {
+         return res.status(422).json({ msg: "[ERRO] Senha inválida!" })
+      }
+
+      try {
+         const secret = 'e7tCTwezDGBeStDw7jAVwzEtPWjVSD53YK2YYTehb9MrSvAn'
+
+         const token = jwt.sign({
+            id: user._id
+         }, secret)
+         res.status(200).json({msg: "[SUCESSO] Autenticação com sucesso", token})
+      } catch (error) {
+         console.log(error)
+         res.status(500).json({ msg: "Erro no servidor" })
+      }
+
+
+
    })
 
 
 
 
+
+module.exports = router

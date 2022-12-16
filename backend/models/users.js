@@ -1,6 +1,5 @@
 var mongoose = require('mongoose')
 
-const passportLocalMongoose = require('passport-local-mongoose')
 
 var User = new mongoose.Schema({
    name: String,
@@ -8,6 +7,5 @@ var User = new mongoose.Schema({
    password: String
 })
 
-User.plugin(passportLocalMongoose)
 
 module.exports = mongoose.model('User', User)
