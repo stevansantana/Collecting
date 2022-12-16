@@ -11,6 +11,7 @@ var config = require('./config')
 var app = express()
 var produtosRouter = require('./routes/produtos')
 var usersRouter = require('./routes/users')
+var carrinhoRouter = require('./routes/carrinho')
 var port = 5000
 var dbUri = config.mongoUrl
 
@@ -37,6 +38,7 @@ app.use(passport.initialize())
 app.use('/users', usersRouter)
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/produtos', produtosRouter)
+app.use('/carrinho', carrinhoRouter)
 
 app.listen(port, () => {
    console.log(`Rodando na porta ${port}`)

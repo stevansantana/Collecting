@@ -7,6 +7,12 @@ var jwt = require('jsonwebtoken')
 router.use(bodyParser.json())
 
 router
+   .get('/', async (req, res) => {
+      const usuariosBanco = await Users.find({}).maxTimeMS(5000)
+      res.setHeader('Content-Type', 'application/json')
+      res.status(200).json(usuariosBanco)
+   })
+
    .post('/signup', async (req, res, next) => {
       const { name, email, password, confirmPassword } = req.body
       const userExists = await Users.findOne({ email: email })
@@ -62,7 +68,7 @@ router
          const token = jwt.sign({
             id: user._id
          }, secret)
-         res.status(200).json({msg: "[SUCESSO] Autenticação com sucesso", token})
+         res.status(200).json({ msg: "[SUCESSO] Autenticação com sucesso", token })
       } catch (error) {
          console.log(error)
          res.status(500).json({ msg: "Erro no servidor" })

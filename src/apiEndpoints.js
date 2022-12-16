@@ -9,5 +9,5 @@ export const apiProducts = axios.create({
 })
 
 export const apiSign = axios.create({
-    baseURL: 'http://localhost:5000/cadastros'
+    baseURL: 'http://localhost:5000/users'
 })

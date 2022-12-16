@@ -1,6 +1,8 @@
 import styles from './NavBar.module.css'
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import { useRecoilValue } from 'recoil'
+import { usuarioLogadoState } from '../../../atoms'
 
 const UL = styled.ul`
 
@@ -23,7 +25,7 @@ const UL = styled.ul`
         border-top-color: black;
         border-top-width: 1px;
         border-top-style: solid;
-        transform: ${({open}) => open ? 'translateX(0)' : 'translateX(100%)'};
+        transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
         
         li {
             margin-top: 30px;
@@ -31,32 +33,41 @@ const UL = styled.ul`
     }
 `;
 
-export default function NavBar ({open}) {
-    return (
-        <nav className={styles.nav_container}>
-            <UL open={open}>
-                <li>
-                    <Link to={'/cart'}>
-                        Carrinho
-                    </Link>
-                </li>
-                <li>
-                    Meus pedidos
-                </li>
-                <li>
-                    <Link to={'/Login'}>
+export default function NavBar({ open }) {
+   const usuario = useRecoilValue(usuarioLogadoState)
+   return (
+      <nav className={styles.nav_container}>
+         <UL open={open}>
+            <li>
+               <Link to={'/cart'}>
+                  Carrinho
+               </Link>
+            </li>
+            <li>
+               Meus pedidos
+            </li>
+            {usuario === undefined && (
+               <>
+                  <li>
+                     <Link to={'/Login'}>
                         Login
-                    </Link>
-                </li>
-                <li>
-                    Chat
-                </li>
-                <li>
-                    <Link to={'/sign-up'}>
+                     </Link>
+                  </li>
+                  <li>
+                     <Link to={'/sign-up'}>
                         Cadastrar
-                    </Link>
-                </li>
-            </UL>
-        </nav>
-    )
+                     </Link>
+                  </li>
+               </>
+            )}
+            {usuario !== undefined && (
+               <li>
+                  <Link to={'/'}>
+                     {usuario.name.split(' ')[0]}
+                  </Link>
+               </li>
+            )}
+         </UL>
+      </nav>
+   )
 }
