@@ -1,7 +1,7 @@
 .button_area {
     background: rgb(255, 146, 86);
     background: linear-gradient(170deg, rgba(255, 146, 86, 1) 0%, rgba(255, 66, 0, 1) 100%);
-    width: 100px;
+    width: 200px;
     padding: 10px 0px;
     border: 2px solid rgb(255, 101, 44);
     border-radius: 5px;

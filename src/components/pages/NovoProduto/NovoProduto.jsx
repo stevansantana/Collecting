@@ -55,10 +55,10 @@ export default function NovoProduto() {
             <div>
                {/* <img src="https://via.placeholder.com/500" alt="Sua imagem" /><br />
                     <input type="file" /> */}
-               <img src={imgProduto} alt="Imagem do produto" width='500' /><br />
-               <input type="file" onChange={handleImage} />
+               <img src={imgProduto} alt="Imagem do produto" />
             </div>
             <div className={styles.form_input_container}>
+               <input type="file" onChange={handleImage} />
                <Input
                   texto='Nome do produto'
                   nome='nomeProduto'

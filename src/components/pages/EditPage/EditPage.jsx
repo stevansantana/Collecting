@@ -30,7 +30,7 @@ export default function EditPage() {
          price: newPrice || product.price
       })
       // Leva para página anterior
-      navigate(-1)
+      navigate('/')
    }
 
 
