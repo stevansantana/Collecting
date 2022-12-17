@@ -38,16 +38,16 @@ export default function NavBar({ open }) {
    return (
       <nav className={styles.nav_container}>
          <UL open={open}>
-            <li>
-               <Link to={'/cart'}>
-                  Carrinho
-               </Link>
-            </li>
-            <li>
-               Meus pedidos
-            </li>
             {usuario === undefined && (
                <>
+                  <li>
+                     Meus pedidos
+                  </li>
+                  <li>
+                     <Link to={'/Login'}>
+                        Carrinho
+                     </Link>
+                  </li>
                   <li>
                      <Link to={'/Login'}>
                         Login
@@ -61,11 +61,21 @@ export default function NavBar({ open }) {
                </>
             )}
             {usuario !== undefined && (
-               <li>
-                  <Link to={'/'}>
-                     {usuario.name.split(' ')[0]}
-                  </Link>
-               </li>
+               <>
+                  <li>
+                     Meus pedidos
+                  </li>
+                  <li>
+                     <Link to={'/cart'}>
+                        Carrinho
+                     </Link>
+                  </li>
+                  <li>
+                     <Link to={'/'}>
+                        {usuario.name.split(' ')[0]}
+                     </Link>
+                  </li>
+               </>
             )}
          </UL>
       </nav>
