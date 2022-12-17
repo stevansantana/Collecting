@@ -30,7 +30,7 @@ export default function Produto() {
         <main className={styles.product_container}>
             {!edit ? (
                 <div>
-                    <img src={produto.linkImg} alt="" />
+                    <img src={produto.linkImg} alt="Imagem do produtos" width={500} />
                     <div>
                         <h1>{produto.name}</h1>
                         <h1>R${produto.price}</h1>

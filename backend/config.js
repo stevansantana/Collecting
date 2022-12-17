@@ -1,4 +1,4 @@
 module.exports = {
    'secretKey': '54321-67890-09876-54321',
-   'mongoUrl': 'mongodb://127.0.0.1:27017/collecting'
+   'mongoUrl': 'mongodb+srv://root:root@collecting.bjltwm1.mongodb.net/?retryWrites=true&w=majority'
 }
