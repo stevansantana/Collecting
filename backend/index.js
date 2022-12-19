@@ -1,6 +1,4 @@
 var express = require('express')
-var session = require('express-session')
-var FileStore = require('session-file-store')(session)
 var passport = require('passport')
 var fileUpload = require('express-fileupload')
 var mongoose = require('mongoose')

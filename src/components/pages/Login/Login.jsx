@@ -7,7 +7,7 @@ import { usersState, usuarioLogadoState } from '../../../atoms'
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { useEffect } from 'react';
-import { apiSign } from '../../../apiEndpoints';
+import { apiSign, api } from '../../../apiEndpoints';
 
 export default function Login() {
 
@@ -39,6 +39,7 @@ export default function Login() {
       }
 
       await apiSign.post('/login', { email: usuario, password: senha })
+      await api.post('')
       setUsuarioLogado(usuarioExiste)
       //reset()
    }
