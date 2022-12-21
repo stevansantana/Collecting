@@ -3,9 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { useForm } from 'react-hook-form'
-import { usersState, usuarioLogadoState } from '../../../atoms'
+import { usersState, usuarioLogadoState, tokenState, carrinhoState } from '../../../atoms'
 import { Link } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
 import { apiSign, api } from '../../../apiEndpoints';
 
@@ -14,6 +14,9 @@ export default function Login() {
    const { register, handleSubmit, formState: { errors }, trigger, } = useForm()
 
    const [usuarios, setUsuarios] = useRecoilState(usersState)
+   const [token, setToken] = useRecoilState(tokenState)
+   const [carrinho, setCarrinho] = useRecoilState(carrinhoState)
+   const estadoCarrinho = useRecoilValue(carrinhoState)
    // eslint-disable-next-line no-unused-vars
    const [usuarioLogado, setUsuarioLogado] = useRecoilState(usuarioLogadoState)
 
@@ -38,11 +41,24 @@ export default function Login() {
          alert('Verifique os dados inseridos')
       }
 
-      await apiSign.post('/login', { email: usuario, password: senha })
-      await api.post('')
+      const { _id } = usuarioExiste
+      await api.post('users/login', { email: usuario, password: senha })
+         .then(res => {
+            api.get(`carrinho/${_id}`, {
+               headers: {
+                  authorization: 'Bearer ' + res.data.token
+               }
+            }).then(res => setCarrinho(res.data[0]))
+            
+            sessionStorage.setItem('token', res.data.token)
+            setToken(res.data.token)
+
+         })
       setUsuarioLogado(usuarioExiste)
       //reset()
    }
+
+   
 
    const onError = (errors) => {
       console.log(errors)

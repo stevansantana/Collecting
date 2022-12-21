@@ -37,7 +37,7 @@ router
 
          const token = jwt.sign({
             id: user._id,
-         }, secret,{expiresIn: '600'})
+         }, secret)
          res.status(200).json({ msg: "[SUCESSO] Autenticação com sucesso", token })
       } catch (error) {
          console.log(error)

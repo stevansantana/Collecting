@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import { useForm } from 'react-hook-form'
 import './Cadastro.modules.css'
 import { Link } from 'react-router-dom';
-import { apiSign } from '../../../apiEndpoints';
+import { api } from '../../../apiEndpoints';
 
 
 export default function Cadastro() {
@@ -22,7 +22,7 @@ export default function Cadastro() {
          confirmPassword: data.confirmarSenha
       }
       console.log(userData)
-      apiSign.post('/signup', userData)
+      api.post('/users', userData)
       reset()
    }
 

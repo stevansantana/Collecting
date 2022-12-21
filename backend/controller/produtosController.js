@@ -30,7 +30,7 @@ const produtosController = {
          const resp = await Produtos.findById(product_id)
          if (resp == null) {
             let err = new Error(`Produto ${product_id} não encontrado`)
-            err.status(404)
+            err.status = 404
             return next(err)
          }
          res.setHeader('Content-Type', 'application/json')

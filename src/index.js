@@ -6,12 +6,10 @@ import { RecoilRoot } from 'recoil';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <RecoilRoot>
+   <RecoilRoot>
       <React.Suspense fallback={<div>Carregando...</div>}>
-        <App />
+         <App />
       </React.Suspense>
-    </RecoilRoot>
-  </React.StrictMode>
+   </RecoilRoot>
 );
 

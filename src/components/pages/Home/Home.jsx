@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { seekProductState, listaProdutos } from "../../../atoms";
+import { seekProductState, listaProdutos, usuarioLogadoState, tokenState } from "../../../atoms";
 import CardProduto from "../CardProduto/CardProduto";
 import styles from "./Home.module.css"
 import Button from "../../layout/Button/Button"
@@ -10,7 +10,8 @@ import { useEffect } from "react";
 
 export default function Home() {
    const [produtos, setProdutos] = useRecoilState(listaProdutos)
-   const produto = produtos[0]
+   const usuario = useRecoilValue(usuarioLogadoState)
+   const token = useRecoilValue(tokenState)
 
    useEffect(() => {
       const getProducts = async () => {
@@ -29,7 +30,18 @@ export default function Home() {
    }
 
    function adicionarAoCarrinho(id) {
-      console.log(produto)
+      api.patch(`carrinho/${usuario._id}`, {
+         produtos: {
+            idProduto: id,
+            name: produtos.filter(produto => produto._id === id)[0].name,
+            price: produtos.filter(produto => produto._id === id)[0].price,
+            linkImg: produtos.filter(produto => produto._id === id)[0].linkImg
+         }
+      }, {
+         headers: {
+            authorization: 'Bearer ' + token
+         }
+      })
    }
 
    return (

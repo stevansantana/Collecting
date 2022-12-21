@@ -6,8 +6,13 @@ export const seekProductState = atom({
    default: ''
 })
 
+export const tokenState = atom({
+   key: 'tokenState',
+   default: ''
+})
+
 export const usuarioLogadoState = atom({
-   key: 'usuarioLogado',
+   key: 'usuarioLogadoState',
    default: undefined
 })
 
@@ -28,8 +33,8 @@ export const listaProdutos = atom({
 })
 
 export const carrinhoState = atom({
-   key: 'carrinhoProdutos',
-   default: []
+   key: 'carrinhoState',
+   default: undefined
 })
 
 

@@ -9,7 +9,12 @@ router.use(bodyParser.json())
 router.route('/:user_id')
    .post(authenticate, carrinhoController.criarCarrinho)
 
+   .patch(authenticate, carrinhoController.atualizarCarrinho)
+
    .get(authenticate, carrinhoController.getUserCarrinhos)
+
+router.route('/:user_id/:product_id')
+   .patch(authenticate, carrinhoController.removerDoCarrinho)
 
 router.route('/:user_id/:cart_id')
    .get(authenticate, carrinhoController.getCarrinho)

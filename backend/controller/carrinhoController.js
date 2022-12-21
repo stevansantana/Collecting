@@ -2,14 +2,50 @@ const Carrinho = require('../models/carrinho')
 
 const carrinhoController = {
 
-   async criarCarrinho(req, res) {
+   async atualizarCarrinho(req, res) {
+      const { user_id } = req.params
+
+      const _idProduto = req.body.produtos.idProduto
+      console.log(_idProduto)
+
+      const carrinhoAtualizado = await Carrinho.findOneAndUpdate(
+         { userId: user_id },
+         {
+            $push: {
+               produtos:
+               {
+                  _id: _idProduto,
+                  name: req.body.produtos.name,
+                  price: req.body.produtos.price,
+                  linkImg: req.body.produtos.linkImg
+               }
+            }
+         })
+      return res.status(200).json(carrinhoAtualizado)
+   },
+
+   async removerDoCarrinho(req, res) {
+      const { user_id } = req.params
+
+      const _idProduto = req.body._id
+      console.log(_idProduto)
+
+      const carrinhoAtualizado = await Carrinho.findOneAndUpdate(
+         { userId: user_id },
+         {
+            $pull: { produtos: { idProduto: _idProduto } }
+         })
+      return res.status(200).json(carrinhoAtualizado)
+   },
+
+   async criarCarrinho(req, res, next) {
       const bodyData = req.body
       const { user_id } = req.params
 
       try {
 
-         const createdCart = await Carrinho.create({ ...bodyData, username: user_id })
-         await createdCart.populate('products').execPopulate()
+         const createdCart = await Carrinho.create({ ...bodyData, userId: user_id })
+         //await createdCart.populate('products').execPopulate()
 
          return res.status(200).json(createdCart)
 
@@ -26,7 +62,7 @@ const carrinhoController = {
 
       try {
 
-         const userCarts = await Carrinho.find({ username: user_id }).populate('products')
+         const userCarts = await Carrinho.find({ userId: user_id })
          return res.status(200).json(userCarts)
 
       } catch (err) {
@@ -39,7 +75,7 @@ const carrinhoController = {
 
    async getCarrinho(req, res) {
 
-      const {  cart_id } = req.params
+      const { cart_id } = req.params
 
       try {
 
