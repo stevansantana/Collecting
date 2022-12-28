@@ -246,7 +246,7 @@ export default function Pagamento(){
                     <div className="mt-5 mb-5">
                        
                         <Link to={'/cart'}><button className="btn btn-primary me-3" href="#">Retornar ao Carrinho</button></Link>
-                        <button className="btn btn-success" type="submit">Finalizar Compra</button>
+                        <button className="btn btn-success" type="submit">Finalizar Compra</button>   
 
                     </div>
                 </div>
