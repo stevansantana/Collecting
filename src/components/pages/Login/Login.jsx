@@ -73,7 +73,7 @@ export default function Login() {
             <Form.Group>
 
                <Form.Label className='mt-5'>Usuário</Form.Label>
-               <Form.Control type='text' placeholder='Digite seu nome' {...register("usuario", { required: "Por favor, digite seu nome" })}
+               <Form.Control type='email' placeholder='Digite seu email' {...register("usuario", { required: "Por favor, digite seu email" })}
                   onKeyUp={() => {
                      trigger("usuario")
                   }}></Form.Control>

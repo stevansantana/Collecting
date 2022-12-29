@@ -98,9 +98,6 @@ export default function Carrinho() {
             <h1>Sem produtos no carrinho</h1>
          )}
 
-
-
-
       </main>
    )
 }

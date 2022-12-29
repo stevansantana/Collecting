@@ -30,96 +30,6 @@ export default function Pagamento(){
 
                 <div className="container">
 
-                    <p className=' mb-5 fs-2 fst-italic'>INFORME SEUS DADOS PESSOAIS</p>
-
-                    <div className="row">
-
-                        <div className="col mt-2">
-                            <label className="form-label">Nome Completo</label>
-                            <input className="form-control border border-secondary rounded-pill" type="text" {...register("nomeCompleto", {required: "Por favor, digite seu nome completo"})}
-                            onKeyUp={() =>{
-                                trigger("nomeCompleto")
-                            }}></input>
-                            {errors.nomeCompleto && (<small className="text-danger">{errors.nomeCompleto.message}</small>)}
-                        </div>
-
-                        <div className="col mt-2">
-                            <label className="form-label">CPF</label>
-                            <input className="form-control border border-secondary rounded-pill" type="text" maxLength={11} {...register("cpf", {required: "Por favor, digite seu CPF",
-                            pattern: {
-                                value: /^[0-9]*$/,
-                                message: "Use somente números"
-                            },
-                            minLength: {
-
-                                value: 11,
-                                message: "CPF inválido"
-                            },
-                            maxLength: {
-
-                                value: 11,
-                                message: "CPF inválido"
-                            }})}  
-                            onKeyUp={() =>{
-                                trigger("cpf")
-                            }}></input>
-                            {errors.cpf && (<small className="text-danger">{errors.cpf.message}</small>)}
-                        </div>
-
-                    </div>
-
-                    <div className="row">
-
-                        <div className="col">
-                            <label className="form-label mt-3">E-mail</label>
-                            <input className="form-control border border-secondary rounded-pill" type="email" {...register("email", {required: "Por favor, digite seu e-mail",
-                            pattern: {
-                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: "E-mail inválido"
-                            }})}
-                            onKeyUp={() =>{
-                                trigger("email")
-                            }}></input>
-                            {errors.email && (<small className="text-danger">{errors.email.message}</small>)}
-                        </div>
-
-                        <div className="col">
-                            <label className="form-label mt-3">Celular</label>
-                            <input className="form-control border border-secondary rounded-pill" type="tel" maxLength={11} {...register("celular", {required: "Por favor, informe seu número de celular",
-                            pattern: {
-                                    value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-.]*(\d{4})(?: *x(\d+))?\s*$/,
-                                    message: "Use somente número juntamente com o DDD"
-                            }})}
-                            onKeyUp={() =>{
-                                trigger("celular")
-                            }}></input>
-                            {errors.celular && (<small className="text-danger">{errors.celular.message}</small>)}
-                        </div>
-
-                    </div>
-
-                    <div className="row">
-
-                        <div className="col">
-                            <label className="form-label mt-3">Senha</label>
-                            <input className="form-control border border-secondary rounded-pill" type="password" {...register("senha", {required: "Por favor, informe sua senha"})}
-                             onKeyUp={() =>{
-                                trigger("senha")
-                            }}></input>
-                            {errors.senha && (<small className="text-danger">{errors.senha.message}</small>)}
-                        </div>
-
-                        <div className="col mb-5">
-                            <label className="form-label mt-3">Confirmar Senha</label>
-                            <input className="form-control border border-secondary rounded-pill" type="password" {...register("confirmarSenha", {required: "Por favor, confirme sua senha"})}
-                             onKeyUp={() =>{
-                                trigger("confirmarSenha")
-                            }}></input>
-                            {errors.confirmarSenha && (<small className="text-danger">{errors.confirmarSenha.message}</small>)}
-                        </div>
-
-                    </div>
-
                     <p className='mt-5 mb-5 fs-2 fst-italic'>INFORME OS DADOS DO SEU ENDEREÇO</p>
 
                     <div className="row">
@@ -249,6 +159,7 @@ export default function Pagamento(){
                         <button className="btn btn-success" type="submit">Finalizar Compra</button>   
 
                     </div>
+
                 </div>
 
             </form>
