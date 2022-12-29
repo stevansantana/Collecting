@@ -1,56 +1,106 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react';
 import Button from '../../layout/Button/Button'
 import styles from './Carrinho.module.css'
-
+import { carrinhoState, tokenState, usuarioLogadoState } from '../../../atoms';
+import { Link } from "react-router-dom";
+import { api } from '../../../apiEndpoints'
+import { useRecoilState, useRecoilValue } from 'recoil';
+import Table from '../../layout/Table/Table';
 
 export default function Carrinho() {
 
-    return (
+   const [carrinho, setCarrinho] = useRecoilState(carrinhoState)
+   const _carrinho = useRecoilState(carrinhoState)
+   const usuario = useRecoilValue(usuarioLogadoState)
+   const token = useRecoilValue(tokenState)
 
-        <main className={styles.cart_container}>
-            <table className={styles.content_table}>
-                <thead>
-                    <th>Produto</th>
-                    <th>Preço</th>
-                    <th></th>
-                </thead>
-                <tbody>
-                    <td><img
-                    src="https://via.placeholder.com/200"
-                    alt="Imagem do produto"
-                /><h3>Produto 1</h3></td>
-                <td>R$00,00</td>
-                <td><a href="#">Remover</a></td>
-                </tbody>
-            </table>
+   useEffect(() => {
+      const carrinhoHandler = () => {
+         if (carrinho === undefined) {
+            api.post(`/carrinho/${usuario._id}`, {}, {
+               headers: {
+                  authorization: 'Bearer ' + token
+               }
+            })
+               .then(res => setCarrinho(res.data))
+         }
+         return carrinho
+      }
+      carrinhoHandler()
 
-            <table className={styles.price_container}>
-            <tbody>    
-                <tr>
-                    <td>Subtotal</td>
-                    <td>R$00,00</td>
-                </tr>
-                <tr>
-                    <td>Entrega</td>
-                    <td><a href="#">Calcular</a></td>
-                </tr>
-                <tr>
-                    <td>Total</td>
-                    <td>R$00,00</td>
-                </tr>
-            </tbody>
+   }, [carrinho, setCarrinho, token, usuario._id])
 
-            </table>
+   useEffect(() => {
+      api.get(`/carrinho/${usuario._id}`, {
+         headers: {
+            authorization: 'Bearer ' + token
+         }
+      }).then(res => setCarrinho(res.data[0]))
+   }, [token, setCarrinho, usuario._id])
 
-            <div>
-                <Link to={'/'}>
-                    <Button conteudoBtn='Adicionar mais itens' />
-                </Link>
-                <Link to={'/Pagamento'}><Button conteudoBtn='Finalizar compra' /></Link>
-                
-            </div>
+   function removerItem(id) {
+      api.patch(`/carrinho/${usuario._id}/${id}`, {
+         produto: { idProduto: id }
+      },
+         {
+            headers: {
+               authorization: 'Bearer ' + token
+            }
+         }).then(res => setCarrinho(res.data[0]))
+   }
 
-        </main>
-    )
+   return (
+
+      <main className={styles.cart_container}>
+         {carrinho !== undefined && _carrinho[0].produtos.length > 0 ? (
+            <>
+               <table className={styles.content_table}>
+                  <thead>
+                     <th>Produto</th>
+                     <th>Preço</th>
+                     <th></th>
+                  </thead>
+                  {_carrinho[0].produtos.map(produto =>
+                     <Table
+                        id={produto._id}
+                        nomeProduto={produto.name}
+                        precoProduto={produto.price}
+                        linkImgProduto={produto.linkImg}
+                        handleRemover={removerItem}
+                     />
+                  )}
+               </table>
+               <table className={styles.price_container}>
+                  <tbody>
+                     <tr>
+                        <td>Subtotal</td>
+                        <td>R$00,00</td>
+                     </tr>
+                     <tr>
+                        <td>Entrega</td>
+                        <td>Calcular</td>
+                     </tr>
+                     <tr>
+                        <td>Total</td>
+                        <td>R$00,00</td>
+                     </tr>
+                  </tbody>
+
+               </table>
+               <div>
+                  <Link to={'/'}>
+                     <Button conteudoBtn='Adicionar mais itens' />
+                  </Link>
+                  <Link to={'/Pagamento'}><Button conteudoBtn='Finalizar compra' /></Link>
+               </div>
+            </>
+         ) : (
+            <h1>Sem produtos no carrinho</h1>
+         )}
+
+
+
+
+      </main>
+   )
 }

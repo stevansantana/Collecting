@@ -5,14 +5,15 @@ var carrinhoSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
    },
-   produtos:[
+   produtos: [
       {
-         produto: {
+         idProduto: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Produto'
          },
          name: String,
-         price: Number
+         price: Number,
+         linkImg: String
       }
    ],
    precoTotal: {

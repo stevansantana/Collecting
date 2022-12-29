@@ -15,7 +15,7 @@ export default function CardProduto({ nome, valor, id, handleCart, handleRemove 
 
    function adicionarAoCarrinho(e) {
       e.preventDefault()
-      handleCart()
+      handleCart(id)
    }
 
 
@@ -33,7 +33,7 @@ export default function CardProduto({ nome, valor, id, handleCart, handleRemove 
             <h3>{nome}</h3>
             <h3>R${valor}</h3>
          </Link>
-         <Button conteudoBtn='Comprar' onClick={adicionarAoCarrinho} />
+         <button onClick={adicionarAoCarrinho}>Comprar</button>
          <button onClick={remove}>Remover</button>
       </div>
    )
