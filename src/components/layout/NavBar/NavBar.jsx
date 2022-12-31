@@ -41,14 +41,6 @@ export default function NavBar({ open }) {
             {usuario === undefined && (
                <>
                   <li>
-                     Meus pedidos
-                  </li>
-                  <li>
-                     <Link to={'/Login'}>
-                        Carrinho
-                     </Link>
-                  </li>
-                  <li>
                      <Link to={'/Login'}>
                         Login
                      </Link>
@@ -74,6 +66,9 @@ export default function NavBar({ open }) {
                      <Link to={'/'}>
                         {usuario.name.split(' ')[0]}
                      </Link>
+                  </li>
+                  <li>
+                     Sair
                   </li>
                </>
             )}
