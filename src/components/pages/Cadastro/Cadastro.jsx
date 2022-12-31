@@ -5,16 +5,16 @@ import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { useForm } from 'react-hook-form'
-import './Cadastro.modules.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../../apiEndpoints';
-
 
 export default function Cadastro() {
 
    const { register, handleSubmit, formState: { errors }, reset, trigger, } = useForm()
+   const navigate = useNavigate()
 
    const onSubmit = (data) => {
+
       const userData = {
          name: data.nomeCompleto,
          email: data.email,
@@ -24,6 +24,17 @@ export default function Cadastro() {
       console.log(userData)
       api.post('/users', userData)
       reset()
+
+      if(data.senha !== data.confirmarSenha)
+      {
+         alert('As senhas precisam ser iguais!')
+         return
+      }
+      else 
+      {
+         alert('Cadastro realizado com sucesso!')
+         navigate('/Login')
+      }
    }
 
    const onError = (errors) => {
