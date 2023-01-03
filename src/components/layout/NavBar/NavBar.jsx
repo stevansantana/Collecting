@@ -1,5 +1,5 @@
 import styles from './NavBar.module.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil'
 import { usuarioLogadoState } from '../../../atoms'
@@ -34,6 +34,7 @@ const UL = styled.ul`
 `;
 
 export default function NavBar({ open }) {
+
    const usuario = useRecoilValue(usuarioLogadoState)
    return (
       <nav className={styles.nav_container}>
@@ -68,7 +69,9 @@ export default function NavBar({ open }) {
                      </Link>
                   </li>
                   <li>
-                     Sair
+                     <Link>
+                        Sair
+                     </Link>
                   </li>
                </>
             )}

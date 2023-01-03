@@ -21,6 +21,7 @@ export default function Cadastro() {
          password: data.senha,
          confirmPassword: data.confirmarSenha
       }
+
       console.log(userData)
       api.post('/users', userData)
       reset()
