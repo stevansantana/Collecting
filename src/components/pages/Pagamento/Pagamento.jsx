@@ -2,15 +2,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useForm} from 'react-hook-form'
 import Pix from '../../../assets/pix.png'
 import styles from './Pagamento.module.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Pagamento(){
 
     const { register, handleSubmit, formState: { errors }, reset, trigger, watch} = useForm()
 
+    const navigate = useNavigate()
     const onSubmit = (data) => {
         console.log(data)
         reset()
+        alert('Compra realizada com sucesso!')
+        navigate('/')
     }
 
     const onError = (errors) => {
