@@ -1,5 +1,5 @@
 import styles from './NavBar.module.css'
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil'
 import { usuarioLogadoState } from '../../../atoms'
@@ -66,11 +66,6 @@ export default function NavBar({ open }) {
                   <li>
                      <Link to={'/'}>
                         {usuario.name.split(' ')[0]}
-                     </Link>
-                  </li>
-                  <li>
-                     <Link>
-                        Sair
                      </Link>
                   </li>
                </>
