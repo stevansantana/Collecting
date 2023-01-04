@@ -16,6 +16,7 @@ export default function CardProduto({ nome, valor, id, handleCart, handleRemove 
    function adicionarAoCarrinho(e) {
       e.preventDefault()
       handleCart(id)
+      alert('Produto adicionado ao carrinho.')
    }
 
 

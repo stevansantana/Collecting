@@ -34,7 +34,7 @@ export default function Produto() {
                     <div>
                         <h1>{produto.name}</h1>
                         <h1>R${produto.price}</h1>
-                        <div className={styles.button_container}>
+                        <div className={styles.button_container}> 
                             <Button conteudoBtn='Comprar' />
                             <button onClick={toggleEdit}>Editar</button>
                         </div>

@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { useForm } from 'react-hook-form'
@@ -8,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
 import { apiSign, api } from '../../../apiEndpoints';
+import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
 
@@ -29,7 +29,9 @@ export default function Login() {
       getUsuarios()
    }, [setUsuarios])
 
+   const navigate = useNavigate()
    const onSubmit = async (data) => {
+      
       const { usuario, senha } = data
       const usuarioExiste = usuarios.filter(usuarios => usuarios.email === usuario)[0]
       // eslint-disable-next-line eqeqeq
@@ -56,9 +58,10 @@ export default function Login() {
          })
       setUsuarioLogado(usuarioExiste)
       //reset()
-   }
 
-   
+      alert('Usuário logado com sucesso!')
+      navigate('/')
+   }
 
    const onError = (errors) => {
       console.log(errors)
@@ -73,7 +76,7 @@ export default function Login() {
             <Form.Group>
 
                <Form.Label className='mt-5'>Usuário</Form.Label>
-               <Form.Control type='text' placeholder='Digite seu nome' {...register("usuario", { required: "Por favor, digite seu nome" })}
+               <Form.Control type='email' placeholder='Digite seu email' {...register("usuario", { required: "Por favor, digite seu email" })}
                   onKeyUp={() => {
                      trigger("usuario")
                   }}></Form.Control>

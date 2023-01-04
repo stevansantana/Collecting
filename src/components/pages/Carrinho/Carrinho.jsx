@@ -87,7 +87,7 @@ export default function Carrinho() {
                   </tbody>
 
                </table>
-               <div>
+               <div className='mb-5'>
                   <Link to={'/'}>
                      <Button conteudoBtn='Adicionar mais itens' />
                   </Link>
@@ -97,9 +97,6 @@ export default function Carrinho() {
          ) : (
             <h1>Sem produtos no carrinho</h1>
          )}
-
-
-
 
       </main>
    )
