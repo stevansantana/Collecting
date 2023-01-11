@@ -143,8 +143,7 @@ export default function Cadastro() {
             </Row>
 
             <Form.Group className='mt-5'>
-
-               <Link to={'/Login'}><Button className="btn btn-danger me-3">Login</Button></Link>
+               
                <Button className="btn btn-success" type="submit">Cadastrar</Button>
 
             </Form.Group>
