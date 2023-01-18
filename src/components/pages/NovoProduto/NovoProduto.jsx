@@ -3,8 +3,8 @@ import Button from '../../layout/Button/Button'
 import Input from '../../form/Input/Input'
 import { useState } from 'react'
 import { api } from '../../../apiEndpoints'
-import { useRecoilState } from 'recoil'
-import { listaProdutos } from '../../../atoms'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { listaProdutos, tokenState, usuarioLogadoState } from '../../../atoms'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -14,6 +14,8 @@ export default function NovoProduto() {
    const [productName, setProductName] = useState()
    const [productPrice, setProductPrice] = useState()
    const [imgProduto, setImgProduto] = useState()
+   const token = useRecoilValue(tokenState)
+   const usuario = useRecoilValue(usuarioLogadoState)
    // eslint-disable-next-line no-unused-vars
    const [produtos, setProdutos] = useRecoilState(listaProdutos)
    const navigate = useNavigate()
@@ -39,7 +41,11 @@ export default function NovoProduto() {
                name: productName || 'Sem nome',
                price: productPrice || 0
             }
-            await api.post('/produtos', novoProduto)
+            await api.post(`/produtos/${usuario._id}`, novoProduto, {
+               headers: {
+                  authorization: 'Bearer ' + token
+               }
+            })
          } catch (error) {
             console.log(error)
          }

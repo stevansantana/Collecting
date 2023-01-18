@@ -1,8 +1,9 @@
 import styles from './NavBar.module.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from 'styled-components';
-import { useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { usuarioLogadoState } from '../../../atoms'
+
 
 const UL = styled.ul`
 
@@ -35,7 +36,24 @@ const UL = styled.ul`
 
 export default function NavBar({ open }) {
 
-   const usuario = useRecoilValue(usuarioLogadoState)
+   const [usuario, setUsuario] = useRecoilState(usuarioLogadoState)
+   const navigate = useNavigate()
+
+   function logout(){
+      
+      if(usuario)
+      {
+         var x = window.confirm('Tem certeza que deseja sair ?')
+
+         if(x)
+         {
+            localStorage.removeItem('token')
+            setUsuario(undefined)
+            navigate('/Login')
+         }
+      }
+   }
+   
    return (
       <nav className={styles.nav_container}>
          <UL open={open}>
@@ -56,9 +74,6 @@ export default function NavBar({ open }) {
             {usuario !== undefined && (
                <>
                   <li>
-                     Meus pedidos
-                  </li>
-                  <li>
                      <Link to={'/cart'}>
                         Carrinho
                      </Link>
@@ -66,6 +81,11 @@ export default function NavBar({ open }) {
                   <li>
                      <Link to={'/'}>
                         {usuario.name.split(' ')[0]}
+                     </Link>
+                  </li>
+                  <li onClick={logout}>
+                     <Link>
+                        Sair
                      </Link>
                   </li>
                </>

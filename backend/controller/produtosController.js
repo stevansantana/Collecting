@@ -12,8 +12,11 @@ const produtosController = {
    },
 
    async createProduto(req, res, next) {
-      
-      Produtos.create(req.body)
+
+      const { user_id } = req.params
+      console.log(user_id)
+
+      Produtos.create({ ...req.body, userId: user_id })
          .then(produto => {
             console.log('Produto criado ', produto)
             res.setHeader('Content-Type', 'application/json')

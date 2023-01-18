@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken')
-const { promisify } = require('util')
 
 const middlewares = {
 
@@ -17,7 +16,10 @@ const middlewares = {
       const secret = 'e7tCTwezDGBeStDw7jAVwzEtPWjVSD53YK2YYTehb9MrSvAn'
 
       jwt.verify(token, secret, (err, decoded) => {
-         if (err) return res.status(401)
+         if (err) return res.status(401).json({
+            erro: true,
+            msg: 'Ops, você deve estar logado para fazer isso!'
+         })
          req.userId = decoded.id
       })
 
