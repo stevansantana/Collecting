@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f9f6f6;
+}
+
+header {
+    font-family: Silkscreen, sans-serif;
+    position: sticky;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 50px;
+}
+
+header .menu-toggle {
+    display: none;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+header .search-area {
+    position: relative;
+    width: 100%;
+}
+
+header .search-area input {
+    width: 100%;
+    padding: 10px 60px 10px 10px;
+    display: block;
+}
+
+
+header .search-area button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 15px;
+    z-index: 2;
+}
+
+header .search-area button img {
+    width: 20px;
+}
+
+header nav {
+    display: flex;
+    gap: 20px;
+}
+
+
+header nav a {
+    text-decoration: none;
+    color: black;
+}
+
+main .container{
+    display: flex;
+    justify-content: center;
+    font-family: 'Noto sans', sans-serif;
+}
+
+main .container .login-card{
+    border: 1px solid black;
+    background: linear-gradient(45deg, #e6f2ff , white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+main .container .login-card a{
+    text-decoration: none;
+    color: rgb(29, 49, 223);
+    font-weight: bold;
+}
+
+
+main .container .login-card form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+main .container .login-card form label{
+    font-weight: bold;
+}
+
+main .container .login-card form input[type=text], input[type=password]{
+    height: 40px;
+    width: 300px;
+    padding-left: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+
+}
+
+main .container .login-card form input[type=text], input[type=password]:focus{
+    outline: none;
+}
+
+main .container .login-card form input[type=submit]{
+    width: 200px;
+    padding: 10px 0px;
+    background-color: dodgerblue;
+    border-style: none;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+
+@media (max-width: 1000px) {
+
+    header nav {
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        gap: 0;
+        top: 13.5%;
+        right: 0;
+        height: 100vh;
+        width: 40vw;
+        z-index: 98;
+        background: #fff;
+        border-left: .5px solid grey;
+        transform: translateX(100%);
+        transition: .2s linear;
+    }
+
+    header nav.open{
+        transform: translateX(0);
+    }
+
+    header nav a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        width: 100%;
+        border-bottom: .5px solid grey;
+    }
+
+    header nav a:hover{
+        cursor: pointer;
+        background-color: rgba(128, 128, 128, 0.342);
+
+    }
+
+    header .menu-toggle {
+        display: block;
+        background: transparent;
+        border: none;
+    }
+
+    header .menu-toggle:hover{
+        cursor: pointer;
+    }
+
+    header .menu-toggle img {
+        width: 30px;
+    }
+}
+
+@media (max-width: 412px){
+    header{
+        margin-bottom: 0;
+    }
+    main{
+        height: 784px;
+    }
+    main .container {
+        height: 100%;
+        width: 100vw;
+    }
+    main .container .login-card{
+        border: none;
+        border-radius: 0;
+        justify-content: space-evenly;
+        
+    }
+    main .container .login-card form input[type=text], input[type=password]{
+        height: 50px;
+    }
+    main .container .login-card form input[type=submit]{
+        height: 50px;
+    }
+}
